@@ -1,0 +1,241 @@
+{
+  "commodities": [
+    {
+      "commodity_code": "MILLET_BAJRA",
+      "name": "Bajra (Pearl Millet)",
+      "grades": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "commodity_code": "MILLET_JOWAR",
+      "name": "Jowar (Sorghum)",
+      "grades": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "commodity_code": "MILLET_RAGI",
+      "name": "Ragi (Finger Millet)",
+      "grades": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "commodity_code": "MILLET_KORRA",
+      "name": "Korra (Little Millet)",
+      "grades": [
+        "A"
+      ]
+    },
+    {
+      "commodity_code": "MILLET_SAMAK",
+      "name": "Samak (Barnyard Millet)",
+      "grades": [
+        "A"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "user_id": "user-1001",
+      "name": "Ram Singh",
+      "phone": "+919876543210",
+      "role": "farmer",
+      "village": "Khandwa",
+      "language": "hi"
+    },
+    {
+      "user_id": "user-1002",
+      "name": "Sita Devi",
+      "phone": "+919812345678",
+      "role": "farmer",
+      "village": "Balangir",
+      "language": "hi"
+    },
+    {
+      "user_id": "user-1003",
+      "name": "Ramesh Kumar",
+      "phone": "+919700112233",
+      "role": "farmer",
+      "village": "Pune",
+      "language": "en"
+    },
+    {
+      "user_id": "user-1004",
+      "name": "Mina Patel",
+      "phone": "+919990011122",
+      "role": "fpo",
+      "village": "Ahmedabad",
+      "language": "en",
+      "fpo_id": "FPO-42"
+    },
+    {
+      "user_id": "user-1005",
+      "name": "Kavita Yadav",
+      "phone": "+919880077665",
+      "role": "farmer",
+      "village": "Gaya",
+      "language": "hi"
+    }
+  ],
+  "batches": [
+    {
+      "batch_id": "batch-2001",
+      "farm_user_id": "user-1001",
+      "commodity_code": "MILLET_BAJRA",
+      "commodity_name": "Bajra (Pearl Millet)",
+      "grade": "A",
+      "qty_kg": 1200,
+      "moisture_pct": 10.5,
+      "foreign_matter_pct": 0.5,
+      "harvest_date": "2025-10-12",
+      "sample_image": "/assets/mock/sample_bajra_1.jpg",
+      "field_image": "/assets/mock/field_bajra_1.jpg",
+      "cert_docs": [],
+      "geo_lat": 22.3656,
+      "geo_long": 76.1560,
+      "status": "listed",
+      "created_at": "2025-10-13T08:12:00Z"
+    },
+    {
+      "batch_id": "batch-2002",
+      "farm_user_id": "user-1002",
+      "commodity_code": "MILLET_JOWAR",
+      "commodity_name": "Jowar (Sorghum)",
+      "grade": "B",
+      "qty_kg": 800,
+      "moisture_pct": 9.0,
+      "foreign_matter_pct": 1.2,
+      "harvest_date": "2025-09-20",
+      "sample_image": "/assets/mock/sample_jowar_1.jpg",
+      "field_image": "/assets/mock/field_jowar_1.jpg",
+      "cert_docs": [],
+      "geo_lat": 20.7009,
+      "geo_long": 85.9835,
+      "status": "qc_pending",
+      "created_at": "2025-09-21T10:05:00Z"
+    },
+    {
+      "batch_id": "batch-2003",
+      "farm_user_id": "user-1003",
+      "commodity_code": "MILLET_RAGI",
+      "commodity_name": "Ragi (Finger Millet)",
+      "grade": "A",
+      "qty_kg": 500,
+      "moisture_pct": 8.2,
+      "foreign_matter_pct": 0.8,
+      "harvest_date": "2025-11-01",
+      "sample_image": "/assets/mock/sample_ragi_1.jpg",
+      "field_image": "/assets/mock/field_ragi_1.jpg",
+      "cert_docs": [
+        "/assets/mock/lab_ragi_1.pdf"
+      ],
+      "geo_lat": 18.5204,
+      "geo_long": 73.8567,
+      "status": "ordered",
+      "created_at": "2025-11-02T07:30:00Z"
+    },
+    {
+      "batch_id": "batch-2004",
+      "farm_user_id": "user-1004",
+      "commodity_code": "MILLET_KORRA",
+      "commodity_name": "Korra (Little Millet)",
+      "grade": "A",
+      "qty_kg": 2000,
+      "moisture_pct": 11.0,
+      "foreign_matter_pct": 0.3,
+      "harvest_date": "2025-08-15",
+      "sample_image": "/assets/mock/sample_korra_1.jpg",
+      "field_image": "/assets/mock/field_korra_1.jpg",
+      "cert_docs": [],
+      "geo_lat": 23.0225,
+      "geo_long": 72.5714,
+      "status": "listed",
+      "created_at": "2025-08-16T12:00:00Z"
+    },
+    {
+      "batch_id": "batch-2005",
+      "farm_user_id": "user-1005",
+      "commodity_code": "MILLET_SAMAK",
+      "commodity_name": "Samak (Barnyard Millet)",
+      "grade": "A",
+      "qty_kg": 350,
+      "moisture_pct": 9.5,
+      "foreign_matter_pct": 0.6,
+      "harvest_date": "2025-10-01",
+      "sample_image": "/assets/mock/sample_samak_1.jpg",
+      "field_image": "/assets/mock/field_samak_1.jpg",
+      "cert_docs": [],
+      "geo_lat": 25.0000,
+      "geo_long": 85.0000,
+      "status": "draft",
+      "created_at": "2025-10-02T09:00:00Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord-001",
+      "batch_id": "batch-2003",
+      "buyer_name": "AgroCorp",
+      "price_per_kg": 25,
+      "total_amount": 12500,
+      "status": "accepted",
+      "created_at": "2025-11-02T10:00:00Z"
+    },
+    {
+      "id": "ord-002",
+      "batch_id": "batch-2001",
+      "buyer_name": "MilletFoods",
+      "price_per_kg": 24,
+      "total_amount": 28800,
+      "status": "offer_received",
+      "created_at": "2025-11-03T09:00:00Z"
+    }
+  ],
+  "trace_events": [
+    {
+      "event_id": "evt-3001",
+      "batch_id": "batch-2001",
+      "event_type": "harvested",
+      "actor": "user-1001",
+      "location": {
+        "lat": 22.3656,
+        "long": 76.1560
+      },
+      "timestamp": "2025-10-12T06:45:00Z",
+      "image": "/assets/mock/trace/harvest_bajra.jpg",
+      "note": "Harvest completed"
+    },
+    {
+      "event_id": "evt-3002",
+      "batch_id": "batch-2001",
+      "event_type": "stored",
+      "actor": "user-1001",
+      "location": {
+        "lat": 22.3656,
+        "long": 76.1560
+      },
+      "timestamp": "2025-10-12T12:00:00Z",
+      "image": "/assets/mock/trace/stored_bajra.jpg",
+      "note": "Stored in farmer shed"
+    },
+    {
+      "event_id": "evt-3003",
+      "batch_id": "batch-2003",
+      "event_type": "sample_tested",
+      "actor": "lab-01",
+      "location": {
+        "lat": 18.5204,
+        "long": 73.8567
+      },
+      "timestamp": "2025-11-03T10:20:00Z",
+      "image": "/assets/mock/trace/lab_ragi_1.jpg",
+      "note": "Moisture 8.2% - Pass"
+    }
+  ]
+}

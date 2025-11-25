@@ -1,0 +1,109 @@
+{
+    "appName": "Shree Anna",
+    "platformSubtitle": "Millets Value Chain Platform",
+    "ministry": "Ministry of Agriculture & Farmers Welfare",
+    "welcome": "Welcome to Shree Anna",
+    "selectLanguage": "Select language",
+    "phonePlaceholder": "Enter phone number",
+    "sendOtp": "Send OTP",
+    "enterOtp": "Enter OTP",
+    "verify": "Verify",
+    "otpScreen": {
+        "enterOtp": "Enter OTP",
+        "sentTo": "OTP sent to",
+        "verify": "Verify OTP"
+    },
+    "role": {
+        "farmer": "Farmer",
+        "fpo": "FPO / Agent",
+        "buyer": "Buyer"
+    },
+    "onboarding": {
+        "createProfile": "Create your profile",
+        "name": "Full name",
+        "village": "Village / Town",
+        "fpoId": "FPO ID (optional)",
+        "language": "Preferred language",
+        "profileUpdated": "Profile updated successfully"
+    },
+    "home": {
+        "myBatches": "My Batches",
+        "uploadBatch": "Upload New Batch",
+        "offers": "Offers",
+        "orders": "Orders",
+        "help": "Help & Support"
+    },
+    "batchForm": {
+        "title": "New Batch",
+        "commodity": "Commodity",
+        "commodity_code": "Commodity Code",
+        "grade": "Grade",
+        "qty_kg": "Quantity (kg)",
+        "moisture_pct": "Moisture (%)",
+        "foreign_matter_pct": "Foreign matter (%)",
+        "harvest_date": "Harvest date",
+        "sample_image": "Sample photo (close-up)",
+        "field_image": "Field photo",
+        "cert_docs": "Certification documents",
+        "geo": "Farm location",
+        "saveDraft": "Save Draft",
+        "uploadNow": "Upload Now",
+        "uploadSuccess": "Batch uploaded successfully",
+        "draftSaved": "Draft saved locally"
+    },
+    "offers": {
+        "newOffer": "New offer received",
+        "accept": "Accept",
+        "reject": "Reject",
+        "viewDetails": "View details"
+    },
+    "orders": {
+        "orderStatus": "Order status",
+        "pickupScheduled": "Pickup scheduled",
+        "paymentReceived": "Payment received"
+    },
+    "trace": {
+        "traceTitle": "Traceability",
+        "batchId": "Batch ID",
+        "events": "Events",
+        "noEvents": "No trace events found"
+    },
+    "helpScreen": {
+        "callAgent": "Call an agent",
+        "requestCallback": "Request a callback",
+        "faq": "FAQ"
+    },
+    "settings": {
+        "language": "Language",
+        "syncNow": "Sync now",
+        "lastSync": "Last synced",
+        "logout": "Log out"
+    },
+    "errors": {
+        "network": "Network unavailable. Your data will be saved and synced later.",
+        "invalidPhone": "Please enter a valid phone number.",
+        "otpFailed": "OTP verification failed. Try again."
+    },
+    "buttons": {
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "ok": "OK"
+    },
+    "auth": {
+        "chooseRole": "Choose Your Role",
+        "selectRoleSubtitle": "Select how you want to use the platform",
+        "changeLanguage": "Change Language",
+        "selectLanguage": "Select Language",
+        "byContinuing": "By continuing, you agree to our Terms & Privacy Policy",
+        "roles": {
+            "farmer": "Farmer / FPO",
+            "farmerDesc": "Sell millets & access schemes",
+            "shg": "Self Help Group",
+            "shgDesc": "Market products collectively",
+            "buyer": "Buyer / Processor",
+            "buyerDesc": "Source quality millets",
+            "admin": "Government Official",
+            "adminDesc": "Monitor & manage platform"
+        }
+    }
+}
