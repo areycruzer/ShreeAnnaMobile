@@ -8,7 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "mock-server": "json-server --watch mock-server/data/mock_data.json --port 4000 --host 0.0.0.0",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
