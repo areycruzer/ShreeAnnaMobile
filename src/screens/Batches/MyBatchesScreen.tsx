@@ -32,7 +32,7 @@ export const MyBatchesScreen = () => {
             const remote = response.data;
             setBatches([...local, ...remote]);
         } catch (error) {
-            console.error(error);
+            console.warn('Offline mode: Fetching local batches only');
             setBatches(getLocalBatches());
         } finally {
             setRefreshing(false);
@@ -56,13 +56,15 @@ export const MyBatchesScreen = () => {
         if (item.status === 'Draft') statusType = 'warning';
         if (item.status === 'QC Pending') statusType = 'info';
 
+        const statusLabel = item.status ? t(`status.${item.status.toLowerCase().replace(' ', '')}`, item.status) : t('status.draft');
+
         return (
             <Card
                 title={item.commodity_code}
-                subtitle={`Grade: ${item.grade} • ${item.qty_kg} kg`}
+                subtitle={`${t('batchForm.grade')}: ${item.grade} • ${item.qty_kg} ${t('units.kg')}`}
                 meta={item.harvest_date}
                 image={image}
-                status={item.status || 'Draft'}
+                status={statusLabel}
                 statusType={statusType}
                 onPress={() => navigation.navigate('Trace', { batchId: item.batch_id })}
                 style={styles.card}
@@ -80,7 +82,7 @@ export const MyBatchesScreen = () => {
                 keyExtractor={(item, index) => item.batch_id || `local-${index}`}
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={fetchBatches} />}
                 contentContainerStyle={styles.list}
-                ListEmptyComponent={<Typography.Body style={{ textAlign: 'center', marginTop: 20 }}>No batches found</Typography.Body>}
+                ListEmptyComponent={<Typography.Body style={{ textAlign: 'center', marginTop: 20 }}>{t('dashboard.noBatches')}</Typography.Body>}
             />
 
             <FAB onPress={() => navigation.navigate('BatchForm')} />

@@ -44,7 +44,12 @@ export const RoleSelectionScreen = () => {
                 </View>
 
                 <TouchableOpacity style={styles.languageButton} onPress={() => setShowLanguageModal(true)}>
-                    <Typography.Body>🌐 {i18n.language === 'hi' ? 'हिंदी' : 'English'}</Typography.Body>
+                    <Typography.Body>🌐 {
+                        {
+                            en: 'English', hi: 'हिंदी', ta: 'தமிழ்', te: 'తెలుగు', kn: 'ಕನ್ನಡ',
+                            ml: 'മലയാളം', mr: 'मराठी', gu: 'ગુજરાતી', bn: 'বাংলা', pa: 'ਪੰਜਾਬੀ'
+                        }[i18n.language] || 'English'
+                    }</Typography.Body>
                     <Typography.Caption style={{ color: '#666' }}>{t('auth.changeLanguage')}</Typography.Caption>
                 </TouchableOpacity>
 
@@ -70,28 +75,34 @@ export const RoleSelectionScreen = () => {
                             <Typography.Title style={styles.modalTitle}>{t('auth.selectLanguage')}</Typography.Title>
                             <Typography.Caption style={styles.modalSubtitle}>{t('selectLanguage')}</Typography.Caption>
                         </View>
-                        <TouchableOpacity
-                            style={[styles.languageOption, i18n.language === 'en' && styles.languageOptionActive]}
-                            onPress={() => { i18n.changeLanguage('en'); setShowLanguageModal(false); }}
-                        >
-                            <Typography.Body style={styles.languageFlag}>🇬🇧</Typography.Body>
-                            <View style={styles.languageInfo}>
-                                <Typography.Subtitle style={styles.languageName}>English</Typography.Subtitle>
-                                <Typography.Caption style={styles.languageNative}>English</Typography.Caption>
-                            </View>
-                            {i18n.language === 'en' && <Typography.Body style={{ color: '#2F8F46', fontSize: 20 }}>✓</Typography.Body>}
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={[styles.languageOption, i18n.language === 'hi' && styles.languageOptionActive]}
-                            onPress={() => { i18n.changeLanguage('hi'); setShowLanguageModal(false); }}
-                        >
-                            <Typography.Body style={styles.languageFlag}>🇮🇳</Typography.Body>
-                            <View style={styles.languageInfo}>
-                                <Typography.Subtitle style={styles.languageName}>Hindi</Typography.Subtitle>
-                                <Typography.Caption style={styles.languageNative}>हिंदी</Typography.Caption>
-                            </View>
-                            {i18n.language === 'hi' && <Typography.Body style={{ color: '#2F8F46', fontSize: 20 }}>✓</Typography.Body>}
-                        </TouchableOpacity>
+
+                        <ScrollView style={{ maxHeight: 400 }} showsVerticalScrollIndicator={false}>
+                            {[
+                                { code: 'en', name: 'English', native: 'English', flag: '🇬🇧' },
+                                { code: 'hi', name: 'Hindi', native: 'हिंदी', flag: '🇮🇳' },
+                                { code: 'ta', name: 'Tamil', native: 'தமிழ்', flag: '🇮🇳' },
+                                { code: 'te', name: 'Telugu', native: 'తెలుగు', flag: '🇮🇳' },
+                                { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ', flag: '🇮🇳' },
+                                { code: 'ml', name: 'Malayalam', native: 'മലയാളം', flag: '🇮🇳' },
+                                { code: 'mr', name: 'Marathi', native: 'मराठी', flag: '🇮🇳' },
+                                { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી', flag: '🇮🇳' },
+                                { code: 'bn', name: 'Bengali', native: 'বাংলা', flag: '🇮🇳' },
+                                { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ', flag: '🇮🇳' }
+                            ].map((lang) => (
+                                <TouchableOpacity
+                                    key={lang.code}
+                                    style={[styles.languageOption, i18n.language === lang.code && styles.languageOptionActive]}
+                                    onPress={() => { i18n.changeLanguage(lang.code); setShowLanguageModal(false); }}
+                                >
+                                    <Typography.Body style={styles.languageFlag}>{lang.flag}</Typography.Body>
+                                    <View style={styles.languageInfo}>
+                                        <Typography.Subtitle style={styles.languageName}>{lang.name}</Typography.Subtitle>
+                                        <Typography.Caption style={styles.languageNative}>{lang.native}</Typography.Caption>
+                                    </View>
+                                    {i18n.language === lang.code && <Typography.Body style={{ color: '#2F8F46', fontSize: 20 }}>✓</Typography.Body>}
+                                </TouchableOpacity>
+                            ))}
+                        </ScrollView>
                     </View>
                 </TouchableOpacity>
             </Modal>

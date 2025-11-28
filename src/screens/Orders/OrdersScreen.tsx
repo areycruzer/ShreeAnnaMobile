@@ -26,10 +26,10 @@ export const OrdersScreen = () => {
     const [showSuccess, setShowSuccess] = useState(false);
 
     const handleAccept = (id: string) => {
-        Alert.alert('Confirm', 'Accept this order?', [
-            { text: 'Cancel', style: 'cancel' },
+        Alert.alert(t('buttons.confirm'), t('orders.confirmAccept'), [
+            { text: t('buttons.cancel'), style: 'cancel' },
             {
-                text: 'Accept',
+                text: t('offers.accept'),
                 onPress: () => {
                     setOrders(prev => prev.map(o => o.id === id ? { ...o, status: 'Accepted' } : o));
                     setShowSuccess(true);
@@ -39,10 +39,10 @@ export const OrdersScreen = () => {
     };
 
     const handleReject = (id: string) => {
-        Alert.alert('Confirm', 'Reject this order?', [
-            { text: 'Cancel', style: 'cancel' },
+        Alert.alert(t('buttons.confirm'), t('orders.confirmReject'), [
+            { text: t('buttons.cancel'), style: 'cancel' },
             {
-                text: 'Reject',
+                text: t('offers.reject'),
                 style: 'destructive',
                 onPress: () => {
                     setOrders(prev => prev.map(o => o.id === id ? { ...o, status: 'Rejected' } : o));
@@ -64,7 +64,7 @@ export const OrdersScreen = () => {
             onPress={() => setActiveTab(title)}
         >
             <Typography.Body style={[styles.tabText, activeTab === title && styles.activeTabText]}>
-                {title}
+                {t(`status.${title.toLowerCase()}`, title)}
             </Typography.Body>
         </TouchableOpacity>
     );
@@ -82,21 +82,21 @@ export const OrdersScreen = () => {
             <Card
                 title={item.buyer}
                 subtitle={`${item.item} • ${item.qty}`}
-                status={<Badge label={item.status} statusType={getStatusType(item.status)} size="small" />}
+                status={<Badge label={t(`status.${item.status.toLowerCase()}`, item.status)} statusType={getStatusType(item.status)} size="small" />}
                 meta={item.date}
                 onPress={() => item.status === 'Accepted' && navigation.navigate('Trace', { batchId: item.id })}
                 action={
                     item.status === 'Pending' ? (
                         <View style={styles.actions}>
                             <Button
-                                title="Reject"
+                                title={t('offers.reject')}
                                 onPress={() => handleReject(item.id)}
                                 variant="ghost"
                                 style={styles.actionBtn}
                                 textStyle={{ color: theme.colors.danger, fontSize: 12 }}
                             />
                             <Button
-                                title="Accept"
+                                title={t('offers.accept')}
                                 onPress={() => handleAccept(item.id)}
                                 variant="secondary"
                                 style={styles.actionBtn}
@@ -105,7 +105,7 @@ export const OrdersScreen = () => {
                         </View>
                     ) : (
                         <Typography.Caption style={{ color: theme.colors.text.secondary }}>
-                            Total: {item.price}
+                            {t('orders.total')} {item.price}
                         </Typography.Caption>
                     )
                 }
@@ -135,13 +135,13 @@ export const OrdersScreen = () => {
                 contentContainerStyle={styles.list}
                 ListEmptyComponent={
                     <View style={styles.empty}>
-                        <Typography.Body>No {activeTab.toLowerCase()} orders found</Typography.Body>
+                        <Typography.Body>{t('orders.noOrders', { status: t(`status.${activeTab.toLowerCase()}`) })}</Typography.Body>
                     </View>
                 }
             />
             <SuccessAnimation
                 visible={showSuccess}
-                message="Order Accepted!"
+                message={t('orders.orderAccepted')}
                 onFinish={() => setShowSuccess(false)}
             />
         </ScreenWrapper>

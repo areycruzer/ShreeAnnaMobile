@@ -8,6 +8,7 @@ import { Input } from '../../components/Input';
 import { ScreenWrapper } from '../../components/ScreenWrapper';
 import { validatePhone, validateEmail, validateRequired, validateMinLength } from '../../utils/validation';
 import { useAuthStore } from '../../store/authStore';
+import { useTranslation } from 'react-i18next';
 
 interface FormData {
     name: string;
@@ -34,8 +35,9 @@ interface FormData {
 export const RegisterScreen = () => {
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
     const route = useRoute<any>();
-    const { role = 'farmer', color = '#2F8F46', title = 'Farmer / FPO', icon = '🌾' } = route.params || {};
-    const register = useAuthStore(state => state.register);
+    const { role, color, title, icon } = route.params || {};
+    const { t } = useTranslation();
+    const { register } = useAuthStore();
 
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState<FormData>({
@@ -58,16 +60,16 @@ export const RegisterScreen = () => {
     const validateStep1 = (): boolean => {
         const newErrors: Record<string, string> = {};
 
-        if (!validateRequired(formData.name)) newErrors.name = 'Name is required';
-        if (!validateRequired(formData.mobile)) newErrors.mobile = 'Mobile number is required';
-        else if (!validatePhone(formData.mobile)) newErrors.mobile = 'Invalid mobile number';
+        if (!validateRequired(formData.name)) newErrors.name = t('register.errors.nameRequired');
+        if (!validateRequired(formData.mobile)) newErrors.mobile = t('register.errors.mobileRequired');
+        else if (!validatePhone(formData.mobile)) newErrors.mobile = t('register.errors.invalidMobile');
 
-        if (formData.email && !validateEmail(formData.email)) newErrors.email = 'Invalid email address';
+        if (formData.email && !validateEmail(formData.email)) newErrors.email = t('register.errors.invalidEmail');
 
-        if (!validateRequired(formData.password)) newErrors.password = 'Password is required';
-        else if (!validateMinLength(formData.password, 8)) newErrors.password = 'Password must be at least 8 characters';
+        if (!validateRequired(formData.password)) newErrors.password = t('register.errors.passwordRequired');
+        else if (!validateMinLength(formData.password, 8)) newErrors.password = t('register.errors.passwordLength');
 
-        if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
+        if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = t('register.errors.passwordMismatch');
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -77,18 +79,18 @@ export const RegisterScreen = () => {
         const newErrors: Record<string, string> = {};
 
         if (role === 'farmer') {
-            if (!validateRequired(formData.village || '')) newErrors.village = 'Village is required';
-            if (!validateRequired(formData.district || '')) newErrors.district = 'District is required';
-            if (!validateRequired(formData.state || '')) newErrors.state = 'State is required';
+            if (!validateRequired(formData.village || '')) newErrors.village = t('register.errors.villageRequired');
+            if (!validateRequired(formData.district || '')) newErrors.district = t('register.errors.districtRequired');
+            if (!validateRequired(formData.state || '')) newErrors.state = t('register.errors.stateRequired');
         } else if (role === 'shg') {
-            if (!validateRequired(formData.groupName || '')) newErrors.groupName = 'Group name is required';
-            if (!validateRequired(formData.membersCount || '')) newErrors.membersCount = 'Members count is required';
+            if (!validateRequired(formData.groupName || '')) newErrors.groupName = t('register.errors.groupNameRequired');
+            if (!validateRequired(formData.membersCount || '')) newErrors.membersCount = t('register.errors.membersCountRequired');
         } else if (role === 'buyer') {
-            if (!validateRequired(formData.companyName || '')) newErrors.companyName = 'Company name is required';
-            if (!validateRequired(formData.businessType || '')) newErrors.businessType = 'Business type is required';
+            if (!validateRequired(formData.companyName || '')) newErrors.companyName = t('register.errors.companyNameRequired');
+            if (!validateRequired(formData.businessType || '')) newErrors.businessType = t('register.errors.businessTypeRequired');
         } else if (role === 'admin') {
-            if (!validateRequired(formData.department || '')) newErrors.department = 'Department is required';
-            if (!validateRequired(formData.designation || '')) newErrors.designation = 'Designation is required';
+            if (!validateRequired(formData.department || '')) newErrors.department = t('register.errors.departmentRequired');
+            if (!validateRequired(formData.designation || '')) newErrors.designation = t('register.errors.designationRequired');
         }
 
         setErrors(newErrors);
@@ -122,11 +124,11 @@ export const RegisterScreen = () => {
                 console.log('✅ Registration successful');
                 navigation.navigate('RegistrationSuccess', { role, mobile: formData.mobile });
             } else {
-                Alert.alert('Registration Failed', 'This phone number is already registered. Please login instead.');
+                Alert.alert(t('register.errors.registrationFailed'), t('register.errors.phoneRegistered'));
             }
         } catch (error) {
             console.error('❌ Registration error:', error);
-            Alert.alert('Error', 'Registration failed. Please try again.');
+            Alert.alert(t('login.error'), t('register.errors.genericError'));
         } finally {
             setLoading(false);
         }
@@ -135,8 +137,8 @@ export const RegisterScreen = () => {
     const renderStep1 = () => (
         <>
             <Input
-                label="Full Name *"
-                placeholder="Enter your full name"
+                label={t('onboarding.name')}
+                placeholder={t('editProfile.enterName')}
                 value={formData.name}
                 onChangeText={(val) => updateField('name', val)}
                 error={errors.name}
@@ -144,8 +146,8 @@ export const RegisterScreen = () => {
                 returnKeyType="next"
             />
             <Input
-                label="Mobile Number *"
-                placeholder="10-digit mobile number"
+                label={t('login.mobileLabel')}
+                placeholder={t('login.mobilePlaceholder')}
                 value={formData.mobile}
                 onChangeText={(val) => updateField('mobile', val)}
                 error={errors.mobile}
@@ -154,8 +156,8 @@ export const RegisterScreen = () => {
                 returnKeyType="next"
             />
             <Input
-                label="Email (Optional)"
-                placeholder="your@email.com"
+                label={t('register.emailOptional')}
+                placeholder={t('register.emailPlaceholder')}
                 value={formData.email}
                 onChangeText={(val) => updateField('email', val)}
                 error={errors.email}
@@ -164,8 +166,8 @@ export const RegisterScreen = () => {
                 returnKeyType="next"
             />
             <Input
-                label="Password *"
-                placeholder="Minimum 8 characters"
+                label={t('login.passwordLabel')}
+                placeholder={t('register.passwordPlaceholder')}
                 value={formData.password}
                 onChangeText={(val) => updateField('password', val)}
                 error={errors.password}
@@ -173,8 +175,8 @@ export const RegisterScreen = () => {
                 returnKeyType="next"
             />
             <Input
-                label="Confirm Password *"
-                placeholder="Re-enter password"
+                label={t('register.confirmPassword')}
+                placeholder={t('register.reEnterPassword')}
                 value={formData.confirmPassword}
                 onChangeText={(val) => updateField('confirmPassword', val)}
                 error={errors.confirmPassword}
@@ -188,36 +190,36 @@ export const RegisterScreen = () => {
         if (role === 'farmer') {
             return (
                 <>
-                    <Input label="Village *" placeholder="Your village name" value={formData.village || ''} onChangeText={(val) => updateField('village', val)} error={errors.village} returnKeyType="next" />
-                    <Input label="District *" placeholder="Your district" value={formData.district || ''} onChangeText={(val) => updateField('district', val)} error={errors.district} returnKeyType="next" />
-                    <Input label="State *" placeholder="Your state" value={formData.state || ''} onChangeText={(val) => updateField('state', val)} error={errors.state} returnKeyType="next" />
-                    <Input label="FPO ID (Optional)" placeholder="If you're part of an FPO" value={formData.fpoId || ''} onChangeText={(val) => updateField('fpoId', val)} returnKeyType="next" />
-                    <Input label="Land Size (Optional)" placeholder="In acres" value={formData.landSize || ''} onChangeText={(val) => updateField('landSize', val)} keyboardType="numeric" returnKeyType="done" />
+                    <Input label={t('onboarding.village') + ' *'} placeholder={t('editProfile.enterVillage')} value={formData.village || ''} onChangeText={(val) => updateField('village', val)} error={errors.village} returnKeyType="next" />
+                    <Input label={t('profile.district') + ' *'} placeholder={t('editProfile.enterDistrict')} value={formData.district || ''} onChangeText={(val) => updateField('district', val)} error={errors.district} returnKeyType="next" />
+                    <Input label={t('profile.state') + ' *'} placeholder={t('editProfile.enterState')} value={formData.state || ''} onChangeText={(val) => updateField('state', val)} error={errors.state} returnKeyType="next" />
+                    <Input label={t('onboarding.fpoId')} placeholder={t('register.fpoPlaceholder')} value={formData.fpoId || ''} onChangeText={(val) => updateField('fpoId', val)} returnKeyType="next" />
+                    <Input label={t('register.landSize')} placeholder={t('register.landSizePlaceholder')} value={formData.landSize || ''} onChangeText={(val) => updateField('landSize', val)} keyboardType="numeric" returnKeyType="done" />
                 </>
             );
         } else if (role === 'shg') {
             return (
                 <>
-                    <Input label="Group Name *" placeholder="SHG name" value={formData.groupName || ''} onChangeText={(val) => updateField('groupName', val)} error={errors.groupName} returnKeyType="next" />
-                    <Input label="Number of Members *" placeholder="Total members" value={formData.membersCount || ''} onChangeText={(val) => updateField('membersCount', val)} error={errors.membersCount} keyboardType="numeric" returnKeyType="next" />
-                    <Input label="Registration Number (Optional)" placeholder="Official registration no." value={formData.registrationNumber || ''} onChangeText={(val) => updateField('registrationNumber', val)} returnKeyType="next" />
-                    <Input label="District *" placeholder="Your district" value={formData.district || ''} onChangeText={(val) => updateField('district', val)} returnKeyType="done" />
+                    <Input label={t('register.groupName')} placeholder={t('register.groupNamePlaceholder')} value={formData.groupName || ''} onChangeText={(val) => updateField('groupName', val)} error={errors.groupName} returnKeyType="next" />
+                    <Input label={t('register.membersCount')} placeholder={t('register.membersCountPlaceholder')} value={formData.membersCount || ''} onChangeText={(val) => updateField('membersCount', val)} error={errors.membersCount} keyboardType="numeric" returnKeyType="next" />
+                    <Input label={t('register.registrationNumber')} placeholder={t('register.registrationNumberPlaceholder')} value={formData.registrationNumber || ''} onChangeText={(val) => updateField('registrationNumber', val)} returnKeyType="next" />
+                    <Input label={t('profile.district') + ' *'} placeholder={t('editProfile.enterDistrict')} value={formData.district || ''} onChangeText={(val) => updateField('district', val)} returnKeyType="done" />
                 </>
             );
         } else if (role === 'buyer') {
             return (
                 <>
-                    <Input label="Company Name *" placeholder="Business/Company name" value={formData.companyName || ''} onChangeText={(val) => updateField('companyName', val)} error={errors.companyName} returnKeyType="next" />
-                    <Input label="GSTIN (Optional)" placeholder="GST identification number" value={formData.gstin || ''} onChangeText={(val) => updateField('gstin', val)} returnKeyType="next" />
-                    <Input label="Business Type *" placeholder="e.g., Processor, Trader" value={formData.businessType || ''} onChangeText={(val) => updateField('businessType', val)} error={errors.businessType} returnKeyType="done" />
+                    <Input label={t('register.companyName')} placeholder={t('register.companyNamePlaceholder')} value={formData.companyName || ''} onChangeText={(val) => updateField('companyName', val)} error={errors.companyName} returnKeyType="next" />
+                    <Input label={t('register.gstin')} placeholder={t('register.gstinPlaceholder')} value={formData.gstin || ''} onChangeText={(val) => updateField('gstin', val)} returnKeyType="next" />
+                    <Input label={t('register.businessType')} placeholder={t('register.businessTypePlaceholder')} value={formData.businessType || ''} onChangeText={(val) => updateField('businessType', val)} error={errors.businessType} returnKeyType="done" />
                 </>
             );
         } else {
             return (
                 <>
-                    <Input label="Department *" placeholder="Your department" value={formData.department || ''} onChangeText={(val) => updateField('department', val)} error={errors.department} returnKeyType="next" />
-                    <Input label="Designation *" placeholder="Your position" value={formData.designation || ''} onChangeText={(val) => updateField('designation', val)} error={errors.designation} returnKeyType="next" />
-                    <Input label="Employee ID (Optional)" placeholder="Official employee ID" value={formData.employeeId || ''} onChangeText={(val) => updateField('employeeId', val)} returnKeyType="done" />
+                    <Input label={t('register.department')} placeholder={t('register.departmentPlaceholder')} value={formData.department || ''} onChangeText={(val) => updateField('department', val)} error={errors.department} returnKeyType="next" />
+                    <Input label={t('register.designation')} placeholder={t('register.designationPlaceholder')} value={formData.designation || ''} onChangeText={(val) => updateField('designation', val)} error={errors.designation} returnKeyType="next" />
+                    <Input label={t('register.employeeId')} placeholder={t('register.employeeIdPlaceholder')} value={formData.employeeId || ''} onChangeText={(val) => updateField('employeeId', val)} returnKeyType="done" />
                 </>
             );
         }
@@ -228,15 +230,15 @@ export const RegisterScreen = () => {
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
                 <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
                     <TouchableOpacity onPress={() => step === 1 ? navigation.goBack() : setStep(1)} style={styles.backButton}>
-                        <Typography.Body style={{ color: '#666' }}>← Back</Typography.Body>
+                        <Typography.Body style={{ color: '#666' }}>{t('login.back')}</Typography.Body>
                     </TouchableOpacity>
 
                     <View style={styles.header}>
                         <View style={[styles.roleIcon, { backgroundColor: color }]}>
                             <Typography.Title style={{ fontSize: 40 }}>{icon}</Typography.Title>
                         </View>
-                        <Typography.Title style={styles.title}>Register as {title}</Typography.Title>
-                        <Typography.Caption style={styles.subtitle}>Step {step} of 2</Typography.Caption>
+                        <Typography.Title style={styles.title}>{t('register.registerAs')} {title}</Typography.Title>
+                        <Typography.Caption style={styles.subtitle}>{t('register.step')} {step} {t('register.of')} 2</Typography.Caption>
                     </View>
 
                     <View style={styles.progressBar}>
@@ -247,11 +249,11 @@ export const RegisterScreen = () => {
                         {step === 1 ? renderStep1() : renderStep2()}
                     </View>
 
-                    <Button title={step === 1 ? 'Next' : 'Register'} onPress={handleNext} loading={loading} style={[styles.button, { backgroundColor: color }]} />
+                    <Button title={step === 1 ? t('register.next') : t('register.register')} onPress={handleNext} loading={loading} style={[styles.button, { backgroundColor: color }]} />
 
                     <TouchableOpacity style={styles.loginLink} onPress={() => navigation.navigate('Login', { role, color, title, icon })}>
-                        <Typography.Body style={{ color: '#666' }}>Already have an account? </Typography.Body>
-                        <Typography.Body style={{ color, fontWeight: 'bold' }}>Login</Typography.Body>
+                        <Typography.Body style={{ color: '#666' }}>{t('login.noAccount')} </Typography.Body>
+                        <Typography.Body style={{ color, fontWeight: 'bold' }}>{t('login.loginButton')}</Typography.Body>
                     </TouchableOpacity>
                 </ScrollView>
             </KeyboardAvoidingView>

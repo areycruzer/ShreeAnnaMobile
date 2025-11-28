@@ -4,6 +4,7 @@ import { Typography } from '../../components/Typography';
 import { useAuthStore } from '../../store/authStore';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 const StatCard = ({ title, value, icon, color, subtitle }: any) => (
     <View style={styles.statCard}>
@@ -33,14 +34,15 @@ const ActionRow = ({ title, icon, onPress }: any) => (
 export const AdminDashboard = () => {
     const user = useAuthStore(state => state.user);
     const navigation = useNavigation<any>();
+    const { t } = useTranslation();
 
     return (
         <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
             {/* Header */}
             <View style={styles.header}>
                 <View>
-                    <Typography.Title style={styles.welcomeText}>Government Portal</Typography.Title>
-                    <Typography.Caption style={styles.subText}>Monitor & Manage Platform</Typography.Caption>
+                    <Typography.Title style={styles.welcomeText}>{t('adminDashboard.portalTitle')}</Typography.Title>
+                    <Typography.Caption style={styles.subText}>{t('adminDashboard.portalSubtitle')}</Typography.Caption>
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                     <View style={styles.avatar}>
@@ -52,31 +54,31 @@ export const AdminDashboard = () => {
             </View>
 
             {/* Platform Overview */}
-            <Typography.Subtitle style={styles.sectionTitle}>Platform Overview</Typography.Subtitle>
+            <Typography.Subtitle style={styles.sectionTitle}>{t('adminDashboard.platformOverview')}</Typography.Subtitle>
             <View style={styles.statsGrid}>
-                <StatCard title="Total Farmers" value="1,245" icon="people" color="#2F8F46" subtitle="+12 this week" />
-                <StatCard title="Active FPOs" value="48" icon="business" color="#F2A34A" subtitle="Across 5 districts" />
-                <StatCard title="Total Volume" value="850 MT" icon="cube" color="#2F80ED" subtitle="Millet produce" />
-                <StatCard title="Market Price" value="₹2,450" icon="trending-up" color="#9C27B0" subtitle="Avg per quintal" />
+                <StatCard title={t('adminDashboard.totalFarmers')} value="1,245" icon="people" color="#2F8F46" subtitle={t('adminDashboard.farmersSubtitle')} />
+                <StatCard title={t('adminDashboard.activeFPOs')} value="48" icon="business" color="#F2A34A" subtitle={t('adminDashboard.fposSubtitle')} />
+                <StatCard title={t('adminDashboard.totalVolume')} value="850 MT" icon="cube" color="#2F80ED" subtitle={t('adminDashboard.volumeSubtitle')} />
+                <StatCard title={t('adminDashboard.marketPrice')} value="₹2,450" icon="trending-up" color="#9C27B0" subtitle={t('adminDashboard.priceSubtitle')} />
             </View>
 
             {/* Quick Actions */}
-            <Typography.Subtitle style={styles.sectionTitle}>Management</Typography.Subtitle>
+            <Typography.Subtitle style={styles.sectionTitle}>{t('adminDashboard.management')}</Typography.Subtitle>
             <View style={styles.actionsContainer}>
-                <ActionRow title="Verify Farmer Registrations" icon="checkmark-circle-outline" />
-                <ActionRow title="Approve FPO Licenses" icon="document-text-outline" />
-                <ActionRow title="Market Price Updates" icon="pricetag-outline" />
-                <ActionRow title="Scheme Beneficiaries" icon="people-outline" />
-                <ActionRow title="Grievance Redressal" icon="chatbubble-ellipses-outline" />
+                <ActionRow title={t('adminDashboard.verifyFarmers')} icon="checkmark-circle-outline" />
+                <ActionRow title={t('adminDashboard.approveFPOs')} icon="document-text-outline" />
+                <ActionRow title={t('adminDashboard.priceUpdates')} icon="pricetag-outline" />
+                <ActionRow title={t('adminDashboard.schemeBeneficiaries')} icon="people-outline" />
+                <ActionRow title={t('adminDashboard.grievanceRedressal')} icon="chatbubble-ellipses-outline" />
             </View>
 
             {/* Recent Alerts */}
-            <Typography.Subtitle style={styles.sectionTitle}>System Alerts</Typography.Subtitle>
+            <Typography.Subtitle style={styles.sectionTitle}>{t('adminDashboard.systemAlerts')}</Typography.Subtitle>
             <View style={styles.alertCard}>
                 <Ionicons name="warning-outline" size={24} color="#F2A34A" />
                 <View style={{ flex: 1 }}>
-                    <Typography.Subtitle style={{ fontSize: 14 }}>Heavy Rain Alert</Typography.Subtitle>
-                    <Typography.Caption>Advisory issued for Karnataka region farmers.</Typography.Caption>
+                    <Typography.Subtitle style={{ fontSize: 14 }}>{t('adminDashboard.rainAlertTitle')}</Typography.Subtitle>
+                    <Typography.Caption>{t('adminDashboard.rainAlertBody')}</Typography.Caption>
                 </View>
             </View>
         </ScrollView>

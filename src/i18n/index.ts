@@ -4,12 +4,28 @@ import * as Localization from 'expo-localization';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import en from './en.json';
 import hi from './hi.json';
+import ta from './ta.json';
+import te from './te.json';
+import kn from './kn.json';
+import ml from './ml.json';
+import mr from './mr.json';
+import gu from './gu.json';
+import bn from './bn.json';
+import pa from './pa.json';
 
 const LANGUAGE_KEY = '@shree_anna_language';
 
 const resources = {
     en: { translation: en },
     hi: { translation: hi },
+    ta: { translation: ta },
+    te: { translation: te },
+    kn: { translation: kn },
+    ml: { translation: ml },
+    mr: { translation: mr },
+    gu: { translation: gu },
+    bn: { translation: bn },
+    pa: { translation: pa },
 };
 
 // Load saved language preference

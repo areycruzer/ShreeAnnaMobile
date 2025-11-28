@@ -16,9 +16,9 @@ export const HelpScreen = () => {
     const handleRequestCallback = async () => {
         try {
             await api.post('/telephony/request-callback', { language: 'hi' });
-            Alert.alert('Success', 'Callback requested. An agent will call you shortly.');
+            Alert.alert(t('helpScreen.callbackSuccessTitle'), t('helpScreen.callbackSuccessMsg'));
         } catch (error) {
-            Alert.alert('Error', 'Failed to request callback');
+            Alert.alert(t('helpScreen.callbackErrorTitle'), t('helpScreen.callbackErrorMsg'));
         }
     };
 
@@ -42,10 +42,10 @@ export const HelpScreen = () => {
 
                 <Typography.Subtitle style={styles.faqTitle}>{t('helpScreen.faq')}</Typography.Subtitle>
                 <Typography.Body>
-                    1. How to upload? Go to "Upload New Batch" and fill details.
+                    {t('helpScreen.faq1')}
                 </Typography.Body>
                 <Typography.Body>
-                    2. Payment? Payments are processed via UPI after buyer acceptance.
+                    {t('helpScreen.faq2')}
                 </Typography.Body>
             </View>
         </ScreenWrapper>

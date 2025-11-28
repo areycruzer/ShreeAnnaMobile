@@ -25,7 +25,7 @@ export const EditProfileScreen = () => {
 
     const handleSave = async () => {
         if (!name.trim()) {
-            Alert.alert('Error', 'Name is required');
+            Alert.alert(t('login.error'), t('editProfile.nameRequired'));
             return;
         }
 
@@ -45,11 +45,11 @@ export const EditProfileScreen = () => {
             };
 
             updateUser(updatedUser);
-            Alert.alert('Success', 'Profile updated successfully', [
-                { text: 'OK', onPress: () => navigation.goBack() }
+            Alert.alert(t('batchForm.uploadSuccess'), t('onboarding.profileUpdated'), [
+                { text: t('buttons.ok'), onPress: () => navigation.goBack() }
             ]);
         } catch (error) {
-            Alert.alert('Error', 'Failed to update profile');
+            Alert.alert(t('login.error'), t('editProfile.updateFailed'));
         } finally {
             setLoading(false);
         }
@@ -65,9 +65,9 @@ export const EditProfileScreen = () => {
                     <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
                         <Ionicons name="close" size={24} color="#1A1A1A" />
                     </TouchableOpacity>
-                    <Typography.Title style={styles.headerTitle}>Edit Profile</Typography.Title>
+                    <Typography.Title style={styles.headerTitle}>{t('profile.editProfile')}</Typography.Title>
                     <TouchableOpacity onPress={handleSave} disabled={loading}>
-                        <Typography.Body style={{ color: '#2F8F46', fontWeight: 'bold' }}>Save</Typography.Body>
+                        <Typography.Body style={{ color: '#2F8F46', fontWeight: 'bold' }}>{t('editProfile.save')}</Typography.Body>
                     </TouchableOpacity>
                 </View>
 
@@ -81,62 +81,62 @@ export const EditProfileScreen = () => {
                                 <Ionicons name="camera" size={14} color="#FFF" />
                             </View>
                         </View>
-                        <Typography.Caption style={{ color: '#666', marginTop: 8 }}>Change Photo</Typography.Caption>
+                        <Typography.Caption style={{ color: '#666', marginTop: 8 }}>{t('editProfile.changePhoto')}</Typography.Caption>
                     </View>
 
                     <View style={styles.form}>
                         <Input
-                            label="Full Name"
+                            label={t('onboarding.name')}
                             value={name}
                             onChangeText={setName}
-                            placeholder="Enter your name"
+                            placeholder={t('editProfile.enterName')}
                         />
                         <Input
-                            label="Email Address"
+                            label={t('profile.email')}
                             value={email}
                             onChangeText={setEmail}
-                            placeholder="Enter your email"
+                            placeholder={t('editProfile.enterEmail')}
                             keyboardType="email-address"
                         />
                         <Input
-                            label="Phone Number"
+                            label={t('login.mobileLabel')}
                             value={user?.phone || ''}
                             editable={false}
-                            placeholder="Phone number"
+                            placeholder={t('login.mobilePlaceholder')}
                             style={{ backgroundColor: '#F5F5F5', color: '#999' }}
                         />
                         <Typography.Caption style={{ color: '#999', marginBottom: 16, marginTop: -12 }}>
-                            Phone number cannot be changed
+                            {t('editProfile.phoneImmutable')}
                         </Typography.Caption>
 
-                        <Typography.Subtitle style={styles.sectionTitle}>Location Details</Typography.Subtitle>
+                        <Typography.Subtitle style={styles.sectionTitle}>{t('editProfile.locationDetails')}</Typography.Subtitle>
                         <Input
-                            label="Village"
+                            label={t('onboarding.village')}
                             value={village}
                             onChangeText={setVillage}
-                            placeholder="Enter village name"
+                            placeholder={t('editProfile.enterVillage')}
                         />
                         <Input
-                            label="District"
+                            label={t('profile.district')}
                             value={district}
                             onChangeText={setDistrict}
-                            placeholder="Enter district"
+                            placeholder={t('editProfile.enterDistrict')}
                         />
                         <Input
-                            label="State"
+                            label={t('profile.state')}
                             value={state}
                             onChangeText={setState}
-                            placeholder="Enter state"
+                            placeholder={t('editProfile.enterState')}
                         />
 
                         {user?.role === 'fpo' && (
                             <>
-                                <Typography.Subtitle style={styles.sectionTitle}>Organization</Typography.Subtitle>
+                                <Typography.Subtitle style={styles.sectionTitle}>{t('profile.organization')}</Typography.Subtitle>
                                 <Input
-                                    label="FPO ID"
+                                    label={t('onboarding.fpoId')}
                                     value={fpoId}
                                     onChangeText={setFpoId}
-                                    placeholder="Enter FPO ID"
+                                    placeholder={t('editProfile.enterFpoId')}
                                 />
                             </>
                         )}

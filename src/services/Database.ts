@@ -45,6 +45,15 @@ export const getLocalBatches = () => {
     return db.getAllSync('SELECT * FROM batches ORDER BY id DESC');
 };
 
+export interface QueueItem {
+    id: number;
+    url: string;
+    method: string;
+    body: string;
+    headers: string;
+    created_at: string;
+}
+
 export const addToQueue = (url: string, method: string, body: any, headers: any = {}) => {
     db.runSync(
         `INSERT INTO offline_queue (url, method, body, headers, created_at) VALUES (?, ?, ?, ?, ?)`,
@@ -52,8 +61,8 @@ export const addToQueue = (url: string, method: string, body: any, headers: any 
     );
 };
 
-export const getQueue = () => {
-    return db.getAllSync('SELECT * FROM offline_queue ORDER BY id ASC');
+export const getQueue = (): QueueItem[] => {
+    return db.getAllSync('SELECT * FROM offline_queue ORDER BY id ASC') as QueueItem[];
 };
 
 export const removeFromQueue = (id: number) => {

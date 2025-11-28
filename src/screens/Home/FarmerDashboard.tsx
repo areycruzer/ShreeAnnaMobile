@@ -5,6 +5,9 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Typography } from '../../components/Typography';
 import { useAuthStore } from '../../store/authStore';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { WeatherWidget } from '../../components/WeatherWidget';
+import { MarketPriceTicker } from '../../components/MarketPriceTicker';
+import { useTranslation } from 'react-i18next';
 
 const QuickActionCard = ({ iconName, iconType, title, subtitle, onPress, color }: any) => {
     const IconComponent = iconType === 'ionicons' ? Ionicons : MaterialCommunityIcons;
@@ -52,6 +55,7 @@ const SchemeCard = ({ title, description, iconName, url }: any) => {
 export const FarmerDashboard = () => {
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
     const user = useAuthStore(state => state.user);
+    const { t } = useTranslation();
 
     // Generate pseudo-random stats based on user name length to make it look dynamic
     const seed = user?.name?.length || 5;
@@ -60,28 +64,28 @@ export const FarmerDashboard = () => {
     const completed = 15 + (seed * 3);
 
     const quickActions = [
-        { iconName: 'cube-outline', iconType: 'ionicons', title: 'List Produce', subtitle: 'Add new batch for sale', color: '#2F8F46', screen: 'BatchForm' },
-        { iconName: 'bar-chart', iconType: 'ionicons', title: 'My Batches', subtitle: 'View all listings', color: '#F2A34A', screen: 'MyBatches' },
-        { iconName: 'cart-outline', iconType: 'ionicons', title: 'Orders', subtitle: 'Track your orders', color: '#2F80ED', screen: 'Orders' },
-        { iconName: 'location-outline', iconType: 'ionicons', title: 'Traceability', subtitle: 'Track produce journey', color: '#9C27B0', screen: 'Trace' }
+        { iconName: 'cube-outline', iconType: 'ionicons', title: t('dashboard.listProduce'), subtitle: t('dashboard.listProduceDesc'), color: '#2F8F46', screen: 'BatchForm' },
+        { iconName: 'bar-chart', iconType: 'ionicons', title: t('dashboard.myBatches'), subtitle: t('dashboard.myBatchesDesc'), color: '#F2A34A', screen: 'MyBatches' },
+        { iconName: 'cart-outline', iconType: 'ionicons', title: t('dashboard.orders'), subtitle: t('dashboard.ordersDesc'), color: '#2F80ED', screen: 'Orders' },
+        { iconName: 'location-outline', iconType: 'ionicons', title: t('dashboard.traceability'), subtitle: t('dashboard.traceabilityDesc'), color: '#9C27B0', screen: 'Trace' }
     ];
 
     const schemes = [
         {
             title: 'PM Kisan',
-            description: 'Direct income support of ₹6,000 per year',
+            description: t('schemes.pmKisanDesc'),
             iconName: 'cash',
             url: 'https://pmkisan.gov.in/'
         },
         {
             title: 'Millet Subsidy',
-            description: 'Financial aid for millet cultivation',
+            description: t('schemes.milletSubsidyDesc'),
             iconName: 'nutrition',
             url: 'https://millets.res.in/'
         },
         {
             title: 'Organic Cert',
-            description: 'Subsidized organic certification',
+            description: t('schemes.organicCertDesc'),
             iconName: 'checkmark-circle',
             url: 'https://pgsindia-ncof.gov.in/'
         }
@@ -92,7 +96,7 @@ export const FarmerDashboard = () => {
             {/* Welcome Section */}
             <View style={styles.welcomeSection}>
                 <View>
-                    <Typography.Caption style={{ color: '#666', marginBottom: 4 }}>Welcome back,</Typography.Caption>
+                    <Typography.Caption style={{ color: '#666', marginBottom: 4 }}>{t('dashboard.welcome')},</Typography.Caption>
                     <Typography.Title style={{ fontSize: 24, color: '#1A1A1A' }}>{user?.name || 'Farmer'}</Typography.Title>
                     <Typography.Caption style={{ color: '#2F8F46', marginTop: 4 }}>
                         <Ionicons name="leaf" size={14} color="#2F8F46" /> {user?.role?.toUpperCase()}
@@ -107,15 +111,23 @@ export const FarmerDashboard = () => {
                 </TouchableOpacity>
             </View>
 
+            <View style={{ paddingHorizontal: 20 }}>
+                <WeatherWidget />
+            </View>
+
             {/* Stats Cards */}
             <View style={styles.statsRow}>
-                <StatCard iconName="cube" value={activeBatches.toString()} label="Active Batches" color="#2F8F46" />
-                <StatCard iconName="cash" value={`₹${earnings}k`} label="This Month" color="#F2A34A" />
-                <StatCard iconName="checkmark-circle" value={completed.toString()} label="Completed" color="#2F80ED" />
+                <StatCard iconName="cube" value={activeBatches.toString()} label={t('dashboard.activeBatches')} color="#2F8F46" />
+                <StatCard iconName="cash" value={`₹${earnings}k`} label={t('dashboard.thisMonth')} color="#F2A34A" />
+                <StatCard iconName="checkmark-circle" value={completed.toString()} label={t('dashboard.completed')} color="#2F80ED" />
+            </View>
+
+            <View style={{ paddingHorizontal: 20 }}>
+                <MarketPriceTicker />
             </View>
 
             {/* Quick Actions */}
-            <Typography.Subtitle style={styles.sectionTitle}>Quick Actions</Typography.Subtitle>
+            <Typography.Subtitle style={styles.sectionTitle}>{t('dashboard.quickActions')}</Typography.Subtitle>
             <View style={styles.actionsGrid}>
                 {quickActions.map((action, index) => (
                     <QuickActionCard
@@ -127,7 +139,12 @@ export const FarmerDashboard = () => {
             </View>
 
             {/* Government Schemes */}
-            <Typography.Subtitle style={styles.sectionTitle}>Government Schemes</Typography.Subtitle>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingRight: 20 }}>
+                <Typography.Subtitle style={styles.sectionTitle}>{t('dashboard.govSchemes')}</Typography.Subtitle>
+                <TouchableOpacity onPress={() => navigation.navigate('Schemes')}>
+                    <Typography.Caption style={{ color: '#2F8F46', fontWeight: 'bold' }}>{t('dashboard.viewAll')}</Typography.Caption>
+                </TouchableOpacity>
+            </View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 24 }}>
                 <View style={styles.schemesRow}>
                     {schemes.map((scheme, index) => (
@@ -137,18 +154,18 @@ export const FarmerDashboard = () => {
             </ScrollView>
 
             {/* Help & Support */}
-            <Typography.Subtitle style={styles.sectionTitle}>Need Help?</Typography.Subtitle>
+            <Typography.Subtitle style={styles.sectionTitle}>{t('dashboard.needHelp')}</Typography.Subtitle>
             <View style={styles.helpCard}>
                 <View style={styles.helpRow}>
                     <View style={styles.helpIcon}>
                         <Ionicons name="call" size={20} color="#2F8F46" />
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Typography.Caption style={{ color: '#666', marginBottom: 2 }}>Helpline</Typography.Caption>
+                        <Typography.Caption style={{ color: '#666', marginBottom: 2 }}>{t('dashboard.helpline')}</Typography.Caption>
                         <Typography.Subtitle style={{ color: '#1A1A1A' }}>1800-180-1551</Typography.Subtitle>
                     </View>
                     <TouchableOpacity style={styles.callButton}>
-                        <Typography.Caption style={{ color: '#FFF', fontWeight: 'bold' }}>Call</Typography.Caption>
+                        <Typography.Caption style={{ color: '#FFF', fontWeight: 'bold' }}>{t('dashboard.call')}</Typography.Caption>
                     </TouchableOpacity>
                 </View>
                 <View style={[styles.helpRow, { marginTop: 16, paddingTop: 16, borderTopWidth: 1, borderTopColor: '#F0F0F0' }]}>
@@ -156,7 +173,7 @@ export const FarmerDashboard = () => {
                         <Ionicons name="mail" size={20} color="#2F8F46" />
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Typography.Caption style={{ color: '#666', marginBottom: 2 }}>Email Support</Typography.Caption>
+                        <Typography.Caption style={{ color: '#666', marginBottom: 2 }}>{t('dashboard.emailSupport')}</Typography.Caption>
                         <Typography.Caption style={{ color: '#1A1A1A' }}>support@shreeanna.gov.in</Typography.Caption>
                     </View>
                 </View>

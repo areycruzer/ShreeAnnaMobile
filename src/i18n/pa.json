@@ -1,0 +1,109 @@
+{
+    "appName": "ਸ਼੍ਰੀ ਅੰਨਾ",
+    "platformSubtitle": "ਮਿਲੇਟਸ ਵੈਲਯੂ ਚੇਨ ਪਲੇਟਫਾਰਮ",
+    "ministry": "ਖੇਤੀਬਾੜੀ ਅਤੇ ਕਿਸਾਨ ਭਲਾਈ ਮੰਤਰਾਲਾ",
+    "welcome": "ਸ਼੍ਰੀ ਅੰਨਾ ਵਿੱਚ ਜੀ ਆਇਆਂ ਨੂੰ",
+    "selectLanguage": "ਭਾਸ਼ਾ ਚੁਣੋ",
+    "phonePlaceholder": "ਫੋਨ ਨੰਬਰ ਦਰਜ ਕਰੋ",
+    "sendOtp": "OTP ਭੇਜੋ",
+    "enterOtp": "OTP ਦਰਜ ਕਰੋ",
+    "verify": "ਤਸਦੀਕ ਕਰੋ",
+    "otpScreen": {
+        "enterOtp": "OTP ਦਰਜ ਕਰੋ",
+        "sentTo": "OTP ਭੇਜਿਆ ਗਿਆ",
+        "verify": "OTP ਤਸਦੀਕ ਕਰੋ"
+    },
+    "role": {
+        "farmer": "ਕਿਸਾਨ",
+        "fpo": "FPO / ਏਜੰਟ",
+        "buyer": "ਖਰੀਦਦਾਰ"
+    },
+    "onboarding": {
+        "createProfile": "ਆਪਣਾ ਪ੍ਰੋਫਾਈਲ ਬਣਾਓ",
+        "name": "ਪੂਰਾ ਨਾਮ",
+        "village": "ਪਿੰਡ / ਸ਼ਹਿਰ",
+        "fpoId": "FPO ID (ਵਿਕਲਪਿਕ)",
+        "language": "ਪਸੰਦੀਦਾ ਭਾਸ਼ਾ",
+        "profileUpdated": "ਪ੍ਰੋਫਾਈਲ ਸਫਲਤਾਪੂਰਵਕ ਅੱਪਡੇਟ ਕੀਤਾ ਗਿਆ"
+    },
+    "home": {
+        "myBatches": "ਮੇਰੇ ਬੈਚ",
+        "uploadBatch": "ਨਵਾਂ ਬੈਚ ਅੱਪਲੋਡ ਕਰੋ",
+        "offers": "ਪੇਸ਼ਕਸ਼ਾਂ",
+        "orders": "ਆਰਡਰ",
+        "help": "ਮਦਦ ਅਤੇ ਸਹਾਇਤਾ"
+    },
+    "batchForm": {
+        "title": "ਨਵਾਂ ਬੈਚ",
+        "commodity": "ਵਸਤੂ",
+        "commodity_code": "ਵਸਤੂ ਕੋਡ",
+        "grade": "ਗ੍ਰੇਡ",
+        "qty_kg": "ਮਾਤਰਾ (ਕਿਲੋ)",
+        "moisture_pct": "ਨਮੀ (%)",
+        "foreign_matter_pct": "ਵਿਦੇਸ਼ੀ ਪਦਾਰਥ (%)",
+        "harvest_date": "ਕਟਾਈ ਦੀ ਮਿਤੀ",
+        "sample_image": "ਨਮੂਨਾ ਫੋਟੋ (ਨੇੜੇ ਤੋਂ)",
+        "field_image": "ਖੇਤ ਦੀ ਫੋਟੋ",
+        "cert_docs": "ਪ੍ਰਮਾਣੀਕਰਣ ਦਸਤਾਵੇਜ਼",
+        "geo": "ਖੇਤ ਦੀ ਸਥਿਤੀ",
+        "saveDraft": "ਡਰਾਫਟ ਸੇਵ ਕਰੋ",
+        "uploadNow": "ਹੁਣੇ ਅੱਪਲੋਡ ਕਰੋ",
+        "uploadSuccess": "ਬੈਚ ਸਫਲਤਾਪੂਰਵਕ ਅੱਪਲੋਡ ਕੀਤਾ ਗਿਆ",
+        "draftSaved": "ਡਰਾਫਟ ਸਥਾਨਕ ਤੌਰ 'ਤੇ ਸੇਵ ਕੀਤਾ ਗਿਆ"
+    },
+    "offers": {
+        "newOffer": "ਨਵੀਂ ਪੇਸ਼ਕਸ਼ ਪ੍ਰਾਪਤ ਹੋਈ",
+        "accept": "ਸਵੀਕਾਰ ਕਰੋ",
+        "reject": "ਰੱਦ ਕਰੋ",
+        "viewDetails": "ਵੇਰਵੇ ਦੇਖੋ"
+    },
+    "orders": {
+        "orderStatus": "ਆਰਡਰ ਸਥਿਤੀ",
+        "pickupScheduled": "ਪਿਕਅੱਪ ਅਨੁਸੂਚਿਤ",
+        "paymentReceived": "ਭੁਗਤਾਨ ਪ੍ਰਾਪਤ ਹੋਇਆ"
+    },
+    "trace": {
+        "traceTitle": "ਟਰੇਸੇਬਿਲਟੀ",
+        "batchId": "ਬੈਚ ID",
+        "events": "ਈਵੈਂਟਸ",
+        "noEvents": "ਕੋਈ ਟਰੇਸ ਈਵੈਂਟ ਨਹੀਂ ਮਿਲਿਆ"
+    },
+    "helpScreen": {
+        "callAgent": "ਏਜੰਟ ਨੂੰ ਕਾਲ ਕਰੋ",
+        "requestCallback": "ਕਾਲਬੈਕ ਦੀ ਬੇਨਤੀ ਕਰੋ",
+        "faq": "ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ"
+    },
+    "settings": {
+        "language": "ਭਾਸ਼ਾ",
+        "syncNow": "ਹੁਣੇ ਸਿੰਕ ਕਰੋ",
+        "lastSync": "ਆਖਰੀ ਸਿੰਕ",
+        "logout": "ਲੌਗ ਆਉਟ"
+    },
+    "errors": {
+        "network": "ਨੈੱਟਵਰਕ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਤੁਹਾਡਾ ਡੇਟਾ ਸੇਵ ਕੀਤਾ ਜਾਵੇਗਾ ਅਤੇ ਬਾਅਦ ਵਿੱਚ ਸਿੰਕ ਕੀਤਾ ਜਾਵੇਗਾ।",
+        "invalidPhone": "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵੈਧ ਫੋਨ ਨੰਬਰ ਦਰਜ ਕਰੋ।",
+        "otpFailed": "OTP ਤਸਦੀਕ ਅਸਫਲ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+    },
+    "buttons": {
+        "confirm": "ਪੁਸ਼ਟੀ ਕਰੋ",
+        "cancel": "ਰੱਦ ਕਰੋ",
+        "ok": "ਠੀਕ ਹੈ"
+    },
+    "auth": {
+        "chooseRole": "ਆਪਣੀ ਭੂਮਿਕਾ ਚੁਣੋ",
+        "selectRoleSubtitle": "ਚੁਣੋ ਕਿ ਤੁਸੀਂ ਪਲੇਟਫਾਰਮ ਦੀ ਵਰਤੋਂ ਕਿਵੇਂ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ",
+        "changeLanguage": "ਭਾਸ਼ਾ ਬਦਲੋ",
+        "selectLanguage": "ਭਾਸ਼ਾ ਚੁਣੋ",
+        "byContinuing": "ਜਾਰੀ ਰੱਖ ਕੇ, ਤੁਸੀਂ ਸਾਡੀਆਂ ਸ਼ਰਤਾਂ ਅਤੇ ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਨਾਲ ਸਹਿਮਤ ਹੁੰਦੇ ਹੋ",
+        "roles": {
+            "farmer": "ਕਿਸਾਨ / FPO",
+            "farmerDesc": "ਮਿਲੇਟਸ ਵੇਚੋ ਅਤੇ ਸਕੀਮਾਂ ਪ੍ਰਾਪਤ ਕਰੋ",
+            "shg": "ਸਵੈ ਸਹਾਇਤਾ ਸਮੂਹ",
+            "shgDesc": "ਉਤਪਾਦਾਂ ਨੂੰ ਸਮੂਹਿਕ ਤੌਰ 'ਤੇ ਮਾਰਕੀਟ ਕਰੋ",
+            "buyer": "ਖਰੀਦਦਾਰ / ਪ੍ਰੋਸੈਸਰ",
+            "buyerDesc": "ਗੁਣਵੱਤਾ ਵਾਲੇ ਮਿਲੇਟਸ ਖਰੀਦੋ",
+            "admin": "ਸਰਕਾਰੀ ਅਧਿਕਾਰੀ",
+            "adminDesc": "ਪਲੇਟਫਾਰਮ ਦੀ ਨਿਗਰਾਨੀ ਅਤੇ ਪ੍ਰਬੰਧਨ ਕਰੋ"
+        }
+    }
+}

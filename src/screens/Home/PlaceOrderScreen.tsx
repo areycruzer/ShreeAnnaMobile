@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView, Alert, TouchableOpacity, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Typography } from '../../components/Typography';
 import { theme } from '../../theme';
@@ -11,6 +12,7 @@ import { validatePhone, validateEmail, validatePincode, validateRequired, valida
 
 export const PlaceOrderScreen = () => {
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
+    const { t } = useTranslation();
     const route = useRoute<any>();
     const { product } = route.params || {};
 
@@ -32,43 +34,43 @@ export const PlaceOrderScreen = () => {
         const newErrors: Record<string, string> = {};
 
         if (!validateRequired(name)) {
-            newErrors.name = 'Name is required';
+            newErrors.name = t('placeOrder.errors.nameRequired');
         }
 
         if (!validateRequired(phone)) {
-            newErrors.phone = 'Phone number is required';
+            newErrors.phone = t('placeOrder.errors.phoneRequired');
         } else if (!validatePhone(phone)) {
-            newErrors.phone = 'Please enter a valid 10-digit phone number';
+            newErrors.phone = t('placeOrder.errors.phoneInvalid');
         }
 
         if (email && !validateEmail(email)) {
-            newErrors.email = 'Please enter a valid email address';
+            newErrors.email = t('placeOrder.errors.emailInvalid');
         }
 
         if (!validateRequired(quantity)) {
-            newErrors.quantity = 'Quantity is required';
+            newErrors.quantity = t('placeOrder.errors.quantityRequired');
         } else if (!validateNumber(quantity)) {
-            newErrors.quantity = 'Please enter a valid quantity';
+            newErrors.quantity = t('placeOrder.errors.quantityInvalid');
         } else if (Number(quantity) < 50) {
-            newErrors.quantity = 'Minimum order is 50 kg';
+            newErrors.quantity = t('placeOrder.errors.minOrder');
         }
 
         if (!validateRequired(address)) {
-            newErrors.address = 'Address is required';
+            newErrors.address = t('placeOrder.errors.addressRequired');
         }
 
         if (!validateRequired(city)) {
-            newErrors.city = 'City is required';
+            newErrors.city = t('placeOrder.errors.cityRequired');
         }
 
         if (!validateRequired(state)) {
-            newErrors.state = 'State is required';
+            newErrors.state = t('placeOrder.errors.stateRequired');
         }
 
         if (!validateRequired(pincode)) {
-            newErrors.pincode = 'Pincode is required';
+            newErrors.pincode = t('placeOrder.errors.pincodeRequired');
         } else if (!validatePincode(pincode)) {
-            newErrors.pincode = 'Please enter a valid 6-digit pincode';
+            newErrors.pincode = t('placeOrder.errors.pincodeInvalid');
         }
 
         setErrors(newErrors);
@@ -80,7 +82,7 @@ export const PlaceOrderScreen = () => {
         Keyboard.dismiss();
 
         if (!validateForm()) {
-            Alert.alert('Validation Error', 'Please fix the errors in the form');
+            Alert.alert(t('placeOrder.validationError'), t('placeOrder.fixErrors'));
             return;
         }
 
@@ -90,9 +92,9 @@ export const PlaceOrderScreen = () => {
         setTimeout(() => {
             setLoading(false);
             Alert.alert(
-                'Order Placed Successfully! 🎉',
-                `Your purchase request for ${quantity}kg of ${product?.name || 'product'} has been sent to the farmer. They will contact you at ${phone} shortly.`,
-                [{ text: 'OK', onPress: () => navigation.navigate('Home') }]
+                t('placeOrder.successTitle'),
+                t('placeOrder.successMessage', { quantity, product: product?.name || 'product', phone }),
+                [{ text: t('buttons.ok'), onPress: () => navigation.navigate('Home') }]
             );
         }, 1500);
     };
@@ -112,25 +114,25 @@ export const PlaceOrderScreen = () => {
                 >
                     <View style={styles.header}>
                         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-                            <Typography.Body>← Back</Typography.Body>
+                            <Typography.Body>← {t('productDetails.back')}</Typography.Body>
                         </TouchableOpacity>
-                        <Typography.Title style={styles.title}>Place Order</Typography.Title>
+                        <Typography.Title style={styles.title}>{t('placeOrder.title')}</Typography.Title>
                     </View>
 
                     {/* Order Summary */}
                     <View style={styles.section}>
-                        <Typography.Subtitle style={styles.sectionTitle}>Order Summary</Typography.Subtitle>
+                        <Typography.Subtitle style={styles.sectionTitle}>{t('placeOrder.orderSummary')}</Typography.Subtitle>
                         <View style={styles.summaryCard}>
                             <View style={styles.row}>
-                                <Typography.Body>Product:</Typography.Body>
+                                <Typography.Body>{t('placeOrder.product')}:</Typography.Body>
                                 <Typography.Body style={{ fontWeight: 'bold' }}>{product?.name || 'Millet'}</Typography.Body>
                             </View>
                             <View style={styles.row}>
-                                <Typography.Body>Price:</Typography.Body>
+                                <Typography.Body>{t('placeOrder.price')}:</Typography.Body>
                                 <Typography.Body>₹{product?.price || 0}/{product?.quantity || 'kg'}</Typography.Body>
                             </View>
                             <View style={[styles.row, styles.totalRow]}>
-                                <Typography.Subtitle>Total Amount:</Typography.Subtitle>
+                                <Typography.Subtitle>{t('placeOrder.totalAmount')}:</Typography.Subtitle>
                                 <Typography.Subtitle style={{ color: theme.colors.primary }}>₹{totalAmount}</Typography.Subtitle>
                             </View>
                         </View>
@@ -138,10 +140,10 @@ export const PlaceOrderScreen = () => {
 
                     {/* Contact Information */}
                     <View style={styles.section}>
-                        <Typography.Subtitle style={styles.sectionTitle}>Contact Information</Typography.Subtitle>
+                        <Typography.Subtitle style={styles.sectionTitle}>{t('placeOrder.contactInfo')}</Typography.Subtitle>
                         <Input
-                            label="Full Name *"
-                            placeholder="Enter your full name"
+                            label={t('placeOrder.fullName')}
+                            placeholder={t('placeOrder.fullNamePlaceholder')}
                             value={name}
                             onChangeText={(text) => {
                                 setName(text);
@@ -152,7 +154,7 @@ export const PlaceOrderScreen = () => {
                             returnKeyType="next"
                         />
                         <Input
-                            label="Phone Number *"
+                            label={t('placeOrder.phone')}
                             placeholder="+91 XXXXX XXXXX"
                             keyboardType="phone-pad"
                             value={phone}
@@ -165,7 +167,7 @@ export const PlaceOrderScreen = () => {
                             returnKeyType="next"
                         />
                         <Input
-                            label="Email Address (Optional)"
+                            label={t('placeOrder.email')}
                             placeholder="your@email.com"
                             keyboardType="email-address"
                             value={email}
@@ -181,9 +183,9 @@ export const PlaceOrderScreen = () => {
 
                     {/* Order Details */}
                     <View style={styles.section}>
-                        <Typography.Subtitle style={styles.sectionTitle}>Order Details</Typography.Subtitle>
+                        <Typography.Subtitle style={styles.sectionTitle}>{t('placeOrder.orderDetails')}</Typography.Subtitle>
                         <Input
-                            label="Quantity (kg) *"
+                            label={t('placeOrder.quantity')}
                             value={quantity}
                             onChangeText={(text) => {
                                 setQuantity(text);
@@ -194,16 +196,16 @@ export const PlaceOrderScreen = () => {
                             returnKeyType="next"
                         />
                         <Typography.Caption style={styles.hint}>
-                            Minimum Order: 50 kg
+                            {t('placeOrder.minOrderHint')}
                         </Typography.Caption>
                     </View>
 
                     {/* Delivery Address */}
                     <View style={styles.section}>
-                        <Typography.Subtitle style={styles.sectionTitle}>Delivery Address</Typography.Subtitle>
+                        <Typography.Subtitle style={styles.sectionTitle}>{t('placeOrder.deliveryAddress')}</Typography.Subtitle>
                         <Input
-                            label="Address *"
-                            placeholder="Street address, building, landmark"
+                            label={t('placeOrder.address')}
+                            placeholder={t('placeOrder.addressPlaceholder')}
                             multiline
                             numberOfLines={3}
                             value={address}
@@ -218,8 +220,8 @@ export const PlaceOrderScreen = () => {
                         <View style={styles.rowInput}>
                             <View style={{ flex: 1, marginRight: 8 }}>
                                 <Input
-                                    label="City *"
-                                    placeholder="City"
+                                    label={t('placeOrder.city')}
+                                    placeholder={t('placeOrder.city')}
                                     value={city}
                                     onChangeText={(text) => {
                                         setCity(text);
@@ -232,8 +234,8 @@ export const PlaceOrderScreen = () => {
                             </View>
                             <View style={{ flex: 1, marginLeft: 8 }}>
                                 <Input
-                                    label="State *"
-                                    placeholder="State"
+                                    label={t('placeOrder.state')}
+                                    placeholder={t('placeOrder.state')}
                                     value={state}
                                     onChangeText={(text) => {
                                         setState(text);
@@ -246,7 +248,7 @@ export const PlaceOrderScreen = () => {
                             </View>
                         </View>
                         <Input
-                            label="Pincode *"
+                            label={t('placeOrder.pincode')}
                             placeholder="XXXXXX"
                             keyboardType="numeric"
                             value={pincode}
@@ -261,7 +263,7 @@ export const PlaceOrderScreen = () => {
                     </View>
 
                     <Button
-                        title="Place Order"
+                        title={t('placeOrder.placeOrderButton')}
                         onPress={handlePlaceOrder}
                         loading={loading}
                         style={styles.button}

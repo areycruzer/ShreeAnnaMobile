@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Typography } from '../../components/Typography';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 interface Notification {
     id: string;
@@ -110,6 +111,7 @@ const NotificationCard = ({ notification }: { notification: Notification }) => {
 
 export const NotificationsScreen = () => {
     const navigation = useNavigation<any>();
+    const { t } = useTranslation();
     const unreadCount = mockNotifications.filter(n => !n.read).length;
 
     return (
@@ -120,7 +122,7 @@ export const NotificationsScreen = () => {
                     <Ionicons name="arrow-back" size={24} color="#1A1A1A" />
                 </TouchableOpacity>
                 <View style={styles.headerCenter}>
-                    <Typography.Title style={styles.headerTitle}>Notifications</Typography.Title>
+                    <Typography.Title style={styles.headerTitle}>{t('notifications.title')}</Typography.Title>
                     {unreadCount > 0 && (
                         <View style={styles.badge}>
                             <Typography.Caption style={styles.badgeText}>{unreadCount}</Typography.Caption>
@@ -128,7 +130,7 @@ export const NotificationsScreen = () => {
                     )}
                 </View>
                 <TouchableOpacity style={styles.markAllButton}>
-                    <Typography.Caption style={{ color: '#2F8F46' }}>Mark all read</Typography.Caption>
+                    <Typography.Caption style={{ color: '#2F8F46' }}>{t('notifications.markAllRead')}</Typography.Caption>
                 </TouchableOpacity>
             </View>
 
@@ -141,7 +143,7 @@ export const NotificationsScreen = () => {
                 ) : (
                     <View style={styles.emptyState}>
                         <Ionicons name="notifications-off-outline" size={64} color="#CCC" />
-                        <Typography.Body style={styles.emptyText}>No notifications yet</Typography.Body>
+                        <Typography.Body style={styles.emptyText}>{t('notifications.empty')}</Typography.Body>
                     </View>
                 )}
             </ScrollView>

@@ -18,6 +18,7 @@ import { ProductDetailsScreen } from '../screens/Home/ProductDetailsScreen';
 import { PlaceOrderScreen } from '../screens/Home/PlaceOrderScreen';
 import { NotificationsScreen } from '../screens/Notifications/NotificationsScreen';
 import { EditProfileScreen } from '../screens/Auth/EditProfileScreen';
+import { SchemesScreen } from '../screens/Home/SchemesScreen';
 import { ActivityIndicator, View } from 'react-native';
 import { seedDemoUser } from '../utils/seedDemoUser';
 
@@ -66,6 +67,7 @@ export const AppNavigator = () => {
                         <Stack.Screen name="PlaceOrder" component={PlaceOrderScreen} />
                         <Stack.Screen name="Notifications" component={NotificationsScreen} />
                         <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+                        <Stack.Screen name="Schemes" component={SchemesScreen} />
                     </>
                 )}
             </Stack.Navigator>

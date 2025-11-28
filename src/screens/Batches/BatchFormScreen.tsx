@@ -31,7 +31,7 @@ export const BatchFormScreen = () => {
     const pickImage = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== 'granted') {
-            Alert.alert('Permission needed', 'Gallery permission is required');
+            Alert.alert(t('batchForm.permissionNeeded'), t('batchForm.galleryPermission'));
             return;
         }
 
@@ -52,7 +52,7 @@ export const BatchFormScreen = () => {
                 setImage(manipResult.uri);
             } catch (error) {
                 console.error("Compression error:", error);
-                Alert.alert("Error", "Failed to process image");
+                Alert.alert(t('batchForm.errorTitle'), t('batchForm.processImageError'));
             }
         }
     };
@@ -60,13 +60,13 @@ export const BatchFormScreen = () => {
     const handleNext = () => {
         if (step === 1) {
             if (!commodity || !grade || !qty || !price) {
-                Alert.alert('Error', 'Please fill all fields');
+                Alert.alert(t('batchForm.errorTitle'), t('batchForm.fillAllFields'));
                 return;
             }
             setStep(2);
         } else if (step === 2) {
             if (!image) {
-                Alert.alert('Error', 'Please upload a photo');
+                Alert.alert(t('batchForm.errorTitle'), t('batchForm.uploadPhotoError'));
                 return;
             }
             setStep(3);
@@ -96,7 +96,7 @@ export const BatchFormScreen = () => {
             setShowSuccess(true);
         } catch (error) {
             console.error(error);
-            Alert.alert('Error', 'Failed to save batch');
+            Alert.alert(t('batchForm.errorTitle'), t('batchForm.saveBatchError'));
         } finally {
             setLoading(false);
         }
@@ -120,28 +120,28 @@ export const BatchFormScreen = () => {
             <ScrollView contentContainerStyle={styles.content}>
                 {step === 1 && (
                     <View>
-                        <Typography.Subtitle style={styles.sectionTitle}>Basic Information</Typography.Subtitle>
+                        <Typography.Subtitle style={styles.sectionTitle}>{t('batchForm.basicInfo')}</Typography.Subtitle>
                         <Input
-                            label={t('batch.commodity')}
+                            label={t('batchForm.commodity')}
                             placeholder="e.g. MILLET_BAJRA"
                             value={commodity}
                             onChangeText={setCommodity}
                         />
                         <Input
-                            label={t('batch.grade')}
+                            label={t('batchForm.grade')}
                             placeholder="e.g. A"
                             value={grade}
                             onChangeText={setGrade}
                         />
                         <Input
-                            label={t('batch.quantity')}
+                            label={t('batchForm.qty_kg')}
                             placeholder="e.g. 100"
                             value={qty}
                             onChangeText={setQty}
                             keyboardType="numeric"
                         />
                         <Input
-                            label={t('batch.price')}
+                            label={t('batchForm.price')}
                             placeholder="e.g. 2500"
                             value={price}
                             onChangeText={setPrice}
@@ -152,19 +152,19 @@ export const BatchFormScreen = () => {
 
                 {step === 2 && (
                     <View>
-                        <Typography.Subtitle style={styles.sectionTitle}>Photos</Typography.Subtitle>
+                        <Typography.Subtitle style={styles.sectionTitle}>{t('batchForm.photos')}</Typography.Subtitle>
                         <TouchableOpacity onPress={pickImage} style={styles.imageUpload}>
                             {image ? (
                                 <Image source={{ uri: image }} style={styles.previewImage} />
                             ) : (
                                 <View style={styles.uploadPlaceholder}>
-                                    <Typography.Body>Tap to upload photo</Typography.Body>
+                                    <Typography.Body>{t('batchForm.tapToUpload')}</Typography.Body>
                                 </View>
                             )}
                         </TouchableOpacity>
                         {image && (
                             <Button
-                                title="Retake Photo"
+                                title={t('batchForm.retakePhoto')}
                                 onPress={pickImage}
                                 variant="secondary"
                                 style={{ marginTop: 16 }}
@@ -175,26 +175,26 @@ export const BatchFormScreen = () => {
 
                 {step === 3 && (
                     <View>
-                        <Typography.Subtitle style={styles.sectionTitle}>Review</Typography.Subtitle>
+                        <Typography.Subtitle style={styles.sectionTitle}>{t('batchForm.review')}</Typography.Subtitle>
                         <View style={styles.reviewCard}>
                             <View style={styles.reviewRow}>
-                                <Typography.Body style={styles.reviewLabel}>{t('batch.commodity')}</Typography.Body>
+                                <Typography.Body style={styles.reviewLabel}>{t('batchForm.commodity')}</Typography.Body>
                                 <Typography.Body style={styles.reviewValue}>{commodity}</Typography.Body>
                             </View>
                             <View style={styles.reviewRow}>
-                                <Typography.Body style={styles.reviewLabel}>{t('batch.grade')}</Typography.Body>
+                                <Typography.Body style={styles.reviewLabel}>{t('batchForm.grade')}</Typography.Body>
                                 <Typography.Body style={styles.reviewValue}>{grade}</Typography.Body>
                             </View>
                             <View style={styles.reviewRow}>
-                                <Typography.Body style={styles.reviewLabel}>{t('batch.quantity')}</Typography.Body>
+                                <Typography.Body style={styles.reviewLabel}>{t('batchForm.qty_kg')}</Typography.Body>
                                 <Typography.Body style={styles.reviewValue}>{qty} kg</Typography.Body>
                             </View>
                             <View style={styles.reviewRow}>
-                                <Typography.Body style={styles.reviewLabel}>{t('batch.price')}</Typography.Body>
+                                <Typography.Body style={styles.reviewLabel}>{t('batchForm.price')}</Typography.Body>
                                 <Typography.Body style={styles.reviewValue}>₹ {price}</Typography.Body>
                             </View>
                             <View style={styles.reviewRow}>
-                                <Typography.Body style={styles.reviewLabel}>Image</Typography.Body>
+                                <Typography.Body style={styles.reviewLabel}>{t('batchForm.image')}</Typography.Body>
                                 <Image source={{ uri: image! }} style={styles.reviewThumbnail} />
                             </View>
                         </View>
@@ -205,14 +205,14 @@ export const BatchFormScreen = () => {
             <View style={styles.footer}>
                 {step > 1 && (
                     <Button
-                        title="Back"
+                        title={t('batchForm.back')}
                         onPress={() => setStep(step - 1)}
                         variant="secondary"
                         style={styles.footerButton}
                     />
                 )}
                 <Button
-                    title={step === 3 ? t('saveDraft') : 'Next'}
+                    title={step === 3 ? t('batchForm.saveDraft') : t('batchForm.next')}
                     onPress={step === 3 ? handleSave : handleNext}
                     loading={loading}
                     style={StyleSheet.flatten([styles.footerButton, { flex: step === 1 ? 1 : 1 }])}
@@ -221,7 +221,7 @@ export const BatchFormScreen = () => {
 
             <SuccessAnimation
                 visible={showSuccess}
-                message="Batch Saved Successfully!"
+                message={t('batchForm.successMessage')}
                 onFinish={() => {
                     setShowSuccess(false);
                     navigation.goBack();

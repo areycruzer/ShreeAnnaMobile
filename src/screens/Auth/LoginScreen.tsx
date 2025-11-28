@@ -29,11 +29,11 @@ export const LoginScreen = () => {
 
     const handleLogin = async () => {
         if (phone.length < 10) {
-            Alert.alert('Error', 'Please enter a valid phone number');
+            Alert.alert(t('login.error'), t('login.errorPhone'));
             return;
         }
         if (!password) {
-            Alert.alert('Error', 'Please enter your password');
+            Alert.alert(t('login.error'), t('login.errorPassword'));
             return;
         }
 
@@ -47,11 +47,11 @@ export const LoginScreen = () => {
                 console.log('✅ Login successful, navigating to Home');
             } else {
                 logError('LoginScreen', 'login_failed', undefined, { phone });
-                Alert.alert('Login Failed', 'Invalid credentials or incorrect role selected.');
+                Alert.alert(t('login.loginFailed'), t('login.invalidCredentials'));
             }
         } catch (error) {
             logError('LoginScreen', 'login_error', undefined, { phone, error: String(error) });
-            Alert.alert('Error', 'An error occurred. Please try again.');
+            Alert.alert(t('login.error'), t('login.errorGeneric'));
         } finally {
             setLoading(false);
         }
@@ -74,7 +74,7 @@ export const LoginScreen = () => {
                         style={styles.backButton}
                         activeOpacity={0.7}
                     >
-                        <Typography.Body style={{ color: '#666' }}>← Back</Typography.Body>
+                        <Typography.Body style={{ color: '#666' }}>← {t('login.back')}</Typography.Body>
                     </TouchableOpacity>
 
                     {/* Demo User Button - Development Only */}
@@ -94,7 +94,7 @@ export const LoginScreen = () => {
                         style={styles.demoButton}
                         activeOpacity={0.7}
                     >
-                        <Typography.Caption style={{ color: '#FFF', fontWeight: 'bold' }}>👤 Demo</Typography.Caption>
+                        <Typography.Caption style={{ color: '#FFF', fontWeight: 'bold' }}>👤 {t('login.demo')}</Typography.Caption>
                     </TouchableOpacity>
 
                     {/* Header */}
@@ -103,18 +103,18 @@ export const LoginScreen = () => {
                             <Typography.Title style={{ fontSize: 40 }}>{icon}</Typography.Title>
                         </View>
                         <Typography.Title style={styles.title}>
-                            Welcome Back!
+                            {t('login.welcomeBack')}
                         </Typography.Title>
                         <Typography.Caption style={styles.subtitle}>
-                            Login as {title}
+                            {t('login.loginAs')} {title}
                         </Typography.Caption>
                     </View>
 
                     {/* Form */}
                     <View style={styles.form}>
                         <Input
-                            label="Mobile Number *"
-                            placeholder="Enter your mobile number"
+                            label={t('login.mobileLabel')}
+                            placeholder={t('login.mobilePlaceholder')}
                             value={phone}
                             onChangeText={setPhone}
                             keyboardType="phone-pad"
@@ -123,8 +123,8 @@ export const LoginScreen = () => {
                         />
 
                         <Input
-                            label="Password *"
-                            placeholder="Enter your password"
+                            label={t('login.passwordLabel')}
+                            placeholder={t('login.passwordPlaceholder')}
                             value={password}
                             onChangeText={setPassword}
                             secureTextEntry
@@ -134,12 +134,12 @@ export const LoginScreen = () => {
 
                         <TouchableOpacity style={styles.forgotPassword}>
                             <Typography.Caption style={{ color }}>
-                                Forgot Password?
+                                {t('login.forgotPassword')}
                             </Typography.Caption>
                         </TouchableOpacity>
 
                         <Button
-                            title="Login"
+                            title={t('login.loginButton')}
                             onPress={handleLogin}
                             loading={loading}
                             style={[styles.loginButton, { backgroundColor: color }]}
@@ -149,7 +149,7 @@ export const LoginScreen = () => {
                         <View style={styles.divider}>
                             <View style={styles.dividerLine} />
                             <Typography.Caption style={styles.dividerText}>
-                                OR
+                                {t('login.or')}
                             </Typography.Caption>
                             <View style={styles.dividerLine} />
                         </View>
@@ -160,10 +160,10 @@ export const LoginScreen = () => {
                             onPress={() => navigation.navigate('Register', { role, color, title, icon })}
                         >
                             <Typography.Body style={{ color: '#666' }}>
-                                Don't have an account?{' '}
+                                {t('login.noAccount')}{' '}
                             </Typography.Body>
                             <Typography.Body style={{ color, fontWeight: 'bold' }}>
-                                Register Now
+                                {t('login.registerNow')}
                             </Typography.Body>
                         </TouchableOpacity>
                     </View>
@@ -171,7 +171,7 @@ export const LoginScreen = () => {
                     {/* Help Text */}
                     <View style={styles.helpContainer}>
                         <Typography.Caption style={styles.helpText}>
-                            💡 New to Shree Anna? Register to access government schemes, fair pricing, and direct market access for your millet produce.
+                            💡 {t('login.newToApp')}
                         </Typography.Caption>
                     </View>
                 </ScrollView>

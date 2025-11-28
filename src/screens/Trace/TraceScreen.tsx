@@ -28,7 +28,7 @@ export const TraceScreen = () => {
     return (
         <ScreenWrapper style={styles.container}>
             <View style={styles.header}>
-                <Typography.Title>Traceability</Typography.Title>
+                <Typography.Title>{t('trace.traceTitle')}</Typography.Title>
             </View>
 
             <ScrollView contentContainerStyle={styles.content}>
@@ -38,35 +38,35 @@ export const TraceScreen = () => {
                         style={styles.qrCode}
                     />
                     <Typography.Body style={{ textAlign: 'center', marginTop: theme.spacing.m, fontWeight: 'bold' }}>
-                        Batch #12345
+                        {t('trace.batchId')} #12345
                     </Typography.Body>
                 </View>
 
                 <View style={styles.mapPlaceholder}>
-                    <Typography.Subtitle style={{ color: theme.colors.primary }}>🗺️ Map View</Typography.Subtitle>
-                    <Typography.Caption>Origin: Rajasthan, India</Typography.Caption>
+                    <Typography.Subtitle style={{ color: theme.colors.primary }}>🗺️ {t('trace.mapView')}</Typography.Subtitle>
+                    <Typography.Caption>{t('trace.origin')}: Rajasthan, India</Typography.Caption>
                 </View>
 
                 <View style={styles.timeline}>
                     <TimelineItem
-                        title="Harvested"
+                        title={t('trace.events.harvested')}
                         date="25 Oct 2023"
-                        status="completed"
+                        status={t('status.completed')}
                     />
                     <TimelineItem
-                        title="Quality Check"
+                        title={t('trace.events.qc')}
                         date="26 Oct 2023"
-                        status="completed"
+                        status={t('status.completed')}
                     />
                     <TimelineItem
-                        title="Stored at Warehouse"
+                        title={t('trace.events.stored')}
                         date="27 Oct 2023"
-                        status="completed"
+                        status={t('status.completed')}
                     />
                     <TimelineItem
-                        title="Dispatched"
-                        date="Pending"
-                        status="pending"
+                        title={t('trace.events.dispatched')}
+                        date={t('status.pending')}
+                        status={t('status.pending')}
                         isLast
                     />
                 </View>

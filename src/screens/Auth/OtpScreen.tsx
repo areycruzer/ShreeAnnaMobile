@@ -20,7 +20,7 @@ export const OtpScreen = () => {
 
     const handleVerify = async () => {
         if (otp.length !== 6) {
-            Alert.alert('Error', 'Invalid OTP');
+            Alert.alert(t('otpScreen.error'), t('otpScreen.invalidOtp'));
             return;
         }
         setLoading(true);
@@ -28,7 +28,7 @@ export const OtpScreen = () => {
             await verifyOtp(requestId, otp);
             // Navigation handled by AppNavigator based on token state
         } catch (error) {
-            Alert.alert('Error', 'Invalid OTP');
+            Alert.alert(t('otpScreen.error'), t('otpScreen.invalidOtp'));
         } finally {
             setLoading(false);
         }
@@ -43,8 +43,8 @@ export const OtpScreen = () => {
                 </Typography.Body>
 
                 <Input
-                    label="OTP Code"
-                    placeholder="123456"
+                    label={t('otpScreen.otpLabel')}
+                    placeholder={t('otpScreen.otpPlaceholder')}
                     value={otp}
                     onChangeText={setOtp}
                     keyboardType="number-pad"

@@ -1,0 +1,109 @@
+{
+    "appName": "श्री अन्ना",
+    "platformSubtitle": "मिलेट्स वैल्यू चेन प्लेटफॉर्म",
+    "ministry": "कृषि एवं किसान कल्याण मंत्रालय",
+    "welcome": "श्री अन्ना में आपका स्वागत है",
+    "selectLanguage": "भाषा चुनें",
+    "phonePlaceholder": "फ़ोन नंबर दर्ज करें",
+    "sendOtp": "OTP भेजें",
+    "enterOtp": "OTP दर्ज करें",
+    "verify": "सत्यापित करें",
+    "otpScreen": {
+        "enterOtp": "OTP दर्ज करें",
+        "sentTo": "OTP भेजा गया",
+        "verify": "OTP सत्यापित करें"
+    },
+    "role": {
+        "farmer": "किसान",
+        "fpo": "FPO / एजेंट",
+        "buyer": "खरीदार"
+    },
+    "onboarding": {
+        "createProfile": "अपनी प्रोफ़ाइल बनाएं",
+        "name": "पूरा नाम",
+        "village": "गाँव / शहर",
+        "fpoId": "FPO ID (वैकल्पिक)",
+        "language": "पसंदीदा भाषा",
+        "profileUpdated": "प्रोफ़ाइल सफलतापूर्वक अपडेट की गई"
+    },
+    "home": {
+        "myBatches": "मेरे बैच",
+        "uploadBatch": "नया बैच अपलोड करें",
+        "offers": "ऑफ़र",
+        "orders": "ऑर्डर",
+        "help": "सहायता और समर्थन"
+    },
+    "batchForm": {
+        "title": "नया बैच",
+        "commodity": "वस्तु",
+        "commodity_code": "वस्तु कोड",
+        "grade": "ग्रेड",
+        "qty_kg": "मात्रा (किग्रा)",
+        "moisture_pct": "नमी (%)",
+        "foreign_matter_pct": "विदेशी पदार्थ (%)",
+        "harvest_date": "कटाई की तारीख",
+        "sample_image": "नमूना फोटो (पास से)",
+        "field_image": "खेत का फोटो",
+        "cert_docs": "प्रमाणन दस्तावेज",
+        "geo": "खेत का स्थान",
+        "saveDraft": "ड्राफ्ट सहेजें",
+        "uploadNow": "अभी अपलोड करें",
+        "uploadSuccess": "बैच सफलतापूर्वक अपलोड किया गया",
+        "draftSaved": "ड्राफ्ट स्थानीय रूप से सहेजा गया"
+    },
+    "offers": {
+        "newOffer": "नया ऑफ़र प्राप्त हुआ",
+        "accept": "स्वीकार करें",
+        "reject": "अस्वीकार करें",
+        "viewDetails": "विवरण देखें"
+    },
+    "orders": {
+        "orderStatus": "ऑर्डर की स्थिति",
+        "pickupScheduled": "पिकअप निर्धारित",
+        "paymentReceived": "भुगतान प्राप्त हुआ"
+    },
+    "trace": {
+        "traceTitle": "ट्रेसिबिलिटी",
+        "batchId": "बैच ID",
+        "events": "इवेंट्स",
+        "noEvents": "कोई ट्रेस इवेंट नहीं मिला"
+    },
+    "helpScreen": {
+        "callAgent": "एजेंट को कॉल करें",
+        "requestCallback": "कॉलबैक का अनुरोध करें",
+        "faq": "अक्सर पूछे जाने वाले प्रश्न"
+    },
+    "settings": {
+        "language": "भाषा",
+        "syncNow": "अभी सिंक करें",
+        "lastSync": "अंतिम सिंक",
+        "logout": "लॉग आउट"
+    },
+    "errors": {
+        "network": "नेटवर्क अनुपलब्ध है। आपका डेटा सहेजा जाएगा और बाद में सिंक किया जाएगा।",
+        "invalidPhone": "कृपया एक मान्य फ़ोन नंबर दर्ज करें।",
+        "otpFailed": "OTP सत्यापन विफल। पुनः प्रयास करें।"
+    },
+    "buttons": {
+        "confirm": "पुष्टि करें",
+        "cancel": "रद्द करें",
+        "ok": "ठीक है"
+    },
+    "auth": {
+        "chooseRole": "अपनी भूमिका चुनें",
+        "selectRoleSubtitle": "चुनें कि आप प्लेटफ़ॉर्म का उपयोग कैसे करना चाहते हैं",
+        "changeLanguage": "भाषा बदलें",
+        "selectLanguage": "भाषा चुनें",
+        "byContinuing": "जारी रखकर, आप हमारी शर्तों और गोपनीयता नीति से सहमत हैं",
+        "roles": {
+            "farmer": "किसान / FPO",
+            "farmerDesc": "मिलेट्स बेचें और योजनाएं प्राप्त करें",
+            "shg": "स्वयं सहायता समूह",
+            "shgDesc": "सामूहिक रूप से उत्पादों का विपणन करें",
+            "buyer": "खरीदार / प्रोसेसर",
+            "buyerDesc": "गुणवत्तापूर्ण मिलेट्स खरीदें",
+            "admin": "सरकारी अधिकारी",
+            "adminDesc": "प्लेटफ़ॉर्म की निगरानी और प्रबंधन करें"
+        }
+    }
+}

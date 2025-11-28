@@ -22,6 +22,7 @@ interface AuthState {
     isLoading: boolean;
     login: (phone: string, password: string, requiredRole?: string) => Promise<boolean>;
     register: (userData: Partial<User>, password: string) => Promise<boolean>;
+    verifyOtp: (requestId: string, otp: string) => Promise<boolean>;
     logout: () => Promise<void>;
     restoreSession: () => Promise<void>;
     updateUser: (user: User) => void;
@@ -108,6 +109,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             console.error('❌ Registration error:', error);
             return false;
         }
+    },
+
+    verifyOtp: async (requestId: string, otp: string) => {
+        console.log('🔐 Verifying OTP:', otp);
+        return otp === '123456';
     },
 
     logout: async () => {

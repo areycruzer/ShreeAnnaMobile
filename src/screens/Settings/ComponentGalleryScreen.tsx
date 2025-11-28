@@ -9,71 +9,73 @@ import { Badge } from '../../components/Badge';
 import { FAB } from '../../components/FAB';
 import { SuccessAnimation } from '../../components/SuccessAnimation';
 import { theme } from '../../theme';
+import { useTranslation } from 'react-i18next';
 
 export const ComponentGalleryScreen = () => {
+    const { t } = useTranslation();
     const [showSuccess, setShowSuccess] = useState(false);
 
     return (
         <ScreenWrapper style={styles.container}>
             <View style={styles.header}>
-                <Typography.Title>Component Gallery</Typography.Title>
+                <Typography.Title>{t('gallery.title')}</Typography.Title>
             </View>
 
             <ScrollView contentContainerStyle={styles.content}>
 
                 <View style={styles.section}>
-                    <Typography.Subtitle>Typography</Typography.Subtitle>
-                    <Typography.Title>Title Text</Typography.Title>
-                    <Typography.Subtitle>Subtitle Text</Typography.Subtitle>
-                    <Typography.Body>Body text is used for general content.</Typography.Body>
-                    <Typography.Caption>Caption text is smaller.</Typography.Caption>
+                    <Typography.Subtitle>{t('gallery.typography')}</Typography.Subtitle>
+                    <Typography.Title>{t('gallery.titleText')}</Typography.Title>
+                    <Typography.Subtitle>{t('gallery.subtitleText')}</Typography.Subtitle>
+                    <Typography.Body>{t('gallery.bodyText')}</Typography.Body>
+                    <Typography.Caption>{t('gallery.captionText')}</Typography.Caption>
                 </View>
 
                 <View style={styles.section}>
-                    <Typography.Subtitle>Buttons</Typography.Subtitle>
+                    <Typography.Subtitle>{t('gallery.buttons')}</Typography.Subtitle>
                     <View style={styles.row}>
-                        <Button title="Primary" onPress={() => { }} style={styles.btn} />
-                        <Button title="Secondary" variant="secondary" onPress={() => { }} style={styles.btn} />
+                        <Button title={t('gallery.primary')} onPress={() => { }} style={styles.btn} />
+                        <Button title={t('gallery.secondary')} variant="secondary" onPress={() => { }} style={styles.btn} />
                     </View>
                     <View style={styles.row}>
-                        <Button title="Ghost" variant="ghost" onPress={() => { }} style={styles.btn} />
-                        <Button title="Loading" loading onPress={() => { }} style={styles.btn} />
+                        <Button title={t('gallery.ghost')} variant="ghost" onPress={() => { }} style={styles.btn} />
+                        <Button title={t('gallery.loading')} loading onPress={() => { }} style={styles.btn} />
                     </View>
-                    <Button title="Disabled" disabled onPress={() => { }} style={styles.btn} />
+                    <Button title={t('gallery.disabled')} disabled onPress={() => { }} style={styles.btn} />
                 </View>
 
                 <View style={styles.section}>
-                    <Typography.Subtitle>Inputs</Typography.Subtitle>
-                    <Input label="Text Input" placeholder="Enter text..." />
-                    <Input label="Numeric Input" placeholder="0.00" keyboardType="numeric" />
+                    <Typography.Subtitle>{t('gallery.inputs')}</Typography.Subtitle>
+                    <Input label={t('gallery.textInput')} placeholder={t('gallery.enterText')} />
+                    <Input label={t('gallery.numericInput')} placeholder="0.00" keyboardType="numeric" />
                 </View>
 
                 <View style={styles.section}>
-                    <Typography.Subtitle>Badges</Typography.Subtitle>
+                    <Typography.Subtitle>{t('gallery.badges')}</Typography.Subtitle>
                     <View style={styles.row}>
-                        <Badge label="Default" />
-                        <Badge label="Success" statusType="success" />
-                        <Badge label="Warning" statusType="warning" />
+                        <Badge label={t('gallery.default')} />
+                        <Badge label={t('gallery.success')} statusType="success" />
+                        <Badge label={t('gallery.warning')} statusType="warning" />
                     </View>
                     <View style={styles.row}>
-                        <Badge label="Danger" statusType="danger" />
-                        <Badge label="Info" statusType="info" />
+                        <Badge label={t('gallery.danger')} statusType="danger" />
+                        <Badge label={t('gallery.info')} statusType="info" />
                     </View>
                 </View>
 
                 <View style={styles.section}>
-                    <Typography.Subtitle>Cards</Typography.Subtitle>
+                    <Typography.Subtitle>{t('gallery.cards')}</Typography.Subtitle>
                     <Card
-                        title="Card Title"
-                        subtitle="Subtitle goes here"
-                        meta="2 mins ago"
-                        status={<Badge label="Active" statusType="success" />}
+                        title={t('gallery.cardTitle')}
+                        subtitle={t('gallery.cardSubtitle')}
+                        meta={t('gallery.cardMeta')}
+                        status={<Badge label={t('gallery.active')} statusType="success" />}
                     />
                 </View>
 
                 <View style={styles.section}>
-                    <Typography.Subtitle>Animations</Typography.Subtitle>
-                    <Button title="Show Success" onPress={() => setShowSuccess(true)} />
+                    <Typography.Subtitle>{t('gallery.animations')}</Typography.Subtitle>
+                    <Button title={t('gallery.showSuccess')} onPress={() => setShowSuccess(true)} />
                 </View>
 
             </ScrollView>

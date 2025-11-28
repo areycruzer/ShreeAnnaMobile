@@ -1,110 +1,109 @@
 {
-    "appName": "Shree Anna",
-    "platformSubtitle": "Millets Value Chain Platform",
-    "ministry": "Ministry of Agriculture & Farmers Welfare",
-    "welcome": "Welcome to Shree Anna",
-    "changeLanguage": "Change Language",
-    "selectLanguage": "Select Language",
-    "byContinuing": "By continuing, you agree to our Terms & Privacy Policy",
-    "roles": {
-        "farmer": "Farmer / FPO",
-        "farmerDesc": "Sell millets & access schemes",
-        "shg": "Self Help Group",
-        "shgDesc": "Market products collectively",
-        "buyer": "Buyer / Processor",
-        "buyerDesc": "Source quality millets",
-        "admin": "Government Official",
-        "adminDesc": "Monitor & manage platform"
+    "appName": "ஸ்ரீ அன்னா",
+    "platformSubtitle": "சிறுதானிய மதிப்பு சங்கிலி தளம்",
+    "ministry": "வேளாண்மை மற்றும் உழவர் நல அமைச்சகம்",
+    "welcome": "ஸ்ரீ அன்னாவுக்கு நல்வரவு",
+    "selectLanguage": "மொழியைத் தேர்ந்தெடுக்கவும்",
+    "phonePlaceholder": "தொலைபேசி எண்ணை உள்ளிடவும்",
+    "sendOtp": "OTP அனுப்புக",
+    "enterOtp": "OTP உள்ளிடவும்",
+    "verify": "சரிபார்",
+    "otpScreen": {
+        "enterOtp": "OTP உள்ளிடவும்",
+        "sentTo": "OTP அனுப்பப்பட்டது",
+        "verify": "OTP சரிபார்"
+    },
+    "role": {
+        "farmer": "விவசாயி",
+        "fpo": "FPO / முகவர்",
+        "buyer": "வாங்குபவர்"
     },
     "onboarding": {
-        "createProfile": "Create your profile",
-        "name": "Full name",
-        "village": "Village / Town",
-        "fpoId": "FPO ID (optional)",
-        "language": "Preferred language",
-        "profileUpdated": "Profile updated successfully"
+        "createProfile": "உங்கள் சுயவிவரத்தை உருவாக்கவும்",
+        "name": "முழு பெயர்",
+        "village": "கிராமம் / நகரம்",
+        "fpoId": "FPO ஐடி (விருப்பத்தேர்வு)",
+        "language": "விருப்பமான மொழி",
+        "profileUpdated": "சுயவிவரம் வெற்றிகரமாக புதுப்பிக்கப்பட்டது"
     },
     "home": {
-        "myBatches": "My Batches",
-        "uploadBatch": "Upload New Batch",
-        "offers": "Offers",
-        "orders": "Orders",
-        "help": "Help & Support"
+        "myBatches": "எனது தொகுப்புகள்",
+        "uploadBatch": "புதிய தொகுப்பை பதிவேற்றவும்",
+        "offers": "சலுகைகள்",
+        "orders": "ஆர்டர்கள்",
+        "help": "உதவி & ஆதரவு"
     },
     "batchForm": {
-        "title": "New Batch",
-        "commodity": "Commodity",
-        "commodity_code": "Commodity Code",
-        "grade": "Grade",
-        "qty_kg": "Quantity (kg)",
-        "moisture_pct": "Moisture (%)",
-        "foreign_matter_pct": "Foreign matter (%)",
-        "harvest_date": "Harvest date",
-        "sample_image": "Sample photo (close-up)",
-        "field_image": "Field photo",
-        "cert_docs": "Certification documents",
-        "geo": "Farm location",
-        "saveDraft": "Save Draft",
-        "uploadNow": "Upload Now",
-        "uploadSuccess": "Batch uploaded successfully",
-        "draftSaved": "Draft saved locally"
+        "title": "புதிய தொகுப்பு",
+        "commodity": "பொருள்",
+        "commodity_code": "பொருள் குறியீடு",
+        "grade": "தரம்",
+        "qty_kg": "அளவு (கிலோ)",
+        "moisture_pct": "ஈரப்பதம் (%)",
+        "foreign_matter_pct": "அன்னியப் பொருள் (%)",
+        "harvest_date": "அறுவடை தேதி",
+        "sample_image": "மாதிரி புகைப்படம் (நெருக்கமாக)",
+        "field_image": "வயல் புகைப்படம்",
+        "cert_docs": "சான்றிதழ் ஆவணங்கள்",
+        "geo": "பண்ணை இருப்பிடம்",
+        "saveDraft": "வரைவை சேமி",
+        "uploadNow": "இப்போது பதிவேற்று",
+        "uploadSuccess": "தொகுப்பு வெற்றிகரமாக பதிவேற்றப்பட்டது",
+        "draftSaved": "வரைவு உள்நாட்டில் சேமிக்கப்பட்டது"
     },
     "offers": {
-        "newOffer": "New offer received",
-        "accept": "Accept",
-        "reject": "Reject",
-        "viewDetails": "View details",
-        "confirm": "Confirm",
-        "cancel": "Cancel",
-        "ok": "OK"
+        "newOffer": "புதிய சலுகை பெறப்பட்டது",
+        "accept": "ஏற்றுக்கொள்",
+        "reject": "நிராகரி",
+        "viewDetails": "விவரங்களைப் பார்"
     },
     "orders": {
-        "orderStatus": "Order status",
-        "pickupScheduled": "Pickup scheduled",
-        "paymentReceived": "Payment received"
+        "orderStatus": "ஆர்டர் நிலை",
+        "pickupScheduled": "பிக்கப் திட்டமிடப்பட்டது",
+        "paymentReceived": "பணம் பெறப்பட்டது"
     },
     "trace": {
-        "traceTitle": "Traceability",
-        "batchId": "Batch ID",
-        "events": "Events",
-        "noEvents": "No trace events found"
+        "traceTitle": "கண்காணிப்பு",
+        "batchId": "தொகுப்பு ஐடி",
+        "events": "நிகழ்வுகள்",
+        "noEvents": "கண்காணிப்பு நிகழ்வுகள் எதுவும் இல்லை"
     },
     "helpScreen": {
-        "callAgent": "Call an agent",
-        "requestCallback": "Request a callback",
-        "faq": "FAQ"
+        "callAgent": "முகவரை அழைக்கவும்",
+        "requestCallback": "திரும்ப அழைக்க கோரவும்",
+        "faq": "அடிக்கடி கேட்கப்படும் கேள்விகள்"
     },
     "settings": {
-        "language": "Language",
-        "syncNow": "Sync now",
-        "lastSync": "Last synced",
-        "logout": "Log out"
+        "language": "மொழி",
+        "syncNow": "இப்போது ஒத்திசை",
+        "lastSync": "கடைசியாக ஒத்திசைக்கப்பட்டது",
+        "logout": "வெளியேறு"
     },
     "errors": {
-        "network": "Network unavailable. Your data will be saved and synced later.",
-        "invalidPhone": "Please enter a valid phone number.",
-        "otpFailed": "OTP verification failed. Try again."
+        "network": "பிணையம் கிடைக்கவில்லை. உங்கள் தரவு சேமிக்கப்பட்டு பின்னர் ஒத்திசைக்கப்படும்.",
+        "invalidPhone": "சரியான தொலைபேசி எண்ணை உள்ளிடவும்.",
+        "otpFailed": "OTP சரிபார்ப்பு தோல்வியடைந்தது. மீண்டும் முயற்சிக்கவும்."
     },
     "buttons": {
-        "confirm": "Confirm",
-        "cancel": "Cancel",
-        "ok": "OK"
+        "confirm": "உறுதிப்படுத்து",
+        "cancel": "ரத்துசெய்",
+        "ok": "சரி"
     },
     "auth": {
-        "chooseRole": "Choose Your Role",
-        "selectRoleSubtitle": "Select how you want to use the platform",
-        "changeLanguage": "Change Language",
-        "selectLanguage": "Select Language",
-        "byContinuing": "By continuing, you agree to our Terms & Privacy Policy",
+        "chooseRole": "உங்கள் பங்கைத் தேர்ந்தெடுக்கவும்",
+        "selectRoleSubtitle": "தளத்தை எவ்வாறு பயன்படுத்த விரும்புகிறீர்கள் என்பதைத் தேர்ந்தெடுக்கவும்",
+        "changeLanguage": "மொழியை மாற்றவும்",
+        "selectLanguage": "மொழியைத் தேர்ந்தெடுக்கவும்",
+        "byContinuing": "தொடர்வதன் மூலம், எங்கள் விதிமுறைகள் மற்றும் தனியுரிமைக் கொள்கையை ஏற்கிறீர்கள்",
         "roles": {
-            "farmer": "Farmer / FPO",
-            "farmerDesc": "Sell millets & access schemes",
-            "shg": "Self Help Group",
-            "shgDesc": "Market products collectively",
-            "buyer": "Buyer / Processor",
-            "buyerDesc": "Source quality millets",
-            "admin": "Government Official",
-            "adminDesc": "Monitor & manage platform"
+            "farmer": "விவசாயி / FPO",
+            "farmerDesc": "சிறுதானியங்களை விற்கவும் & திட்டங்களை அணுகவும்",
+            "shg": "சுய உதவிக் குழு",
+            "shgDesc": "கூட்டாக பொருட்களை சந்தைப்படுத்தவும்",
+            "buyer": "வாங்குபவர் / பதப்படுத்துபவர்",
+            "buyerDesc": "தரமான சிறுதானியங்களை கொள்முதல் செய்யவும்",
+            "admin": "அரசு அதிகாரி",
+            "adminDesc": "தளத்தை கண்காணிக்கவும் & நிர்வகிக்கவும்"
         }
     },
     "dashboard": {
@@ -281,15 +280,6 @@
         "active": "Active",
         "animations": "Animations",
         "showSuccess": "Show Success"
-    },
-    "otpScreen": {
-        "enterOtp": "Enter OTP",
-        "sentTo": "OTP sent to",
-        "verify": "Verify OTP",
-        "error": "Error",
-        "invalidOtp": "Invalid OTP",
-        "otpLabel": "OTP Code",
-        "otpPlaceholder": "123456"
     },
     "status": {
         "listed": "Listed",

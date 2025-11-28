@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Typography } from '../../components/Typography';
 import { theme } from '../../theme';
@@ -9,6 +10,7 @@ import { ScreenWrapper } from '../../components/ScreenWrapper';
 
 export const ProductDetailsScreen = () => {
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
+    const { t } = useTranslation();
     const route = useRoute<any>();
     const { product } = route.params || {};
 
@@ -28,7 +30,7 @@ export const ProductDetailsScreen = () => {
             <ScrollView contentContainerStyle={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-                        <Typography.Body>← Back</Typography.Body>
+                        <Typography.Body>← {t('productDetails.back')}</Typography.Body>
                     </TouchableOpacity>
                 </View>
 
@@ -46,22 +48,22 @@ export const ProductDetailsScreen = () => {
                 {/* Details Card */}
                 <View style={styles.detailsCard}>
                     <View style={styles.row}>
-                        <Typography.Body style={styles.label}>Farmer/SHG:</Typography.Body>
+                        <Typography.Body style={styles.label}>{t('productDetails.farmer')}:</Typography.Body>
                         <Typography.Body style={styles.value}>{item.farmer}</Typography.Body>
                     </View>
                     <View style={styles.divider} />
                     <View style={styles.row}>
-                        <Typography.Body style={styles.label}>Available:</Typography.Body>
+                        <Typography.Body style={styles.label}>{t('productDetails.available')}:</Typography.Body>
                         <Typography.Body style={styles.value}>{item.available}</Typography.Body>
                     </View>
                     <View style={styles.divider} />
                     <View style={styles.row}>
-                        <Typography.Body style={styles.label}>Price:</Typography.Body>
+                        <Typography.Body style={styles.label}>{t('productDetails.price')}:</Typography.Body>
                         <Typography.Body style={styles.price}>₹{item.price}/{item.quantity}</Typography.Body>
                     </View>
                     <View style={styles.divider} />
                     <View style={styles.row}>
-                        <Typography.Body style={styles.label}>Location:</Typography.Body>
+                        <Typography.Body style={styles.label}>{t('productDetails.location')}:</Typography.Body>
                         <Typography.Body style={styles.value}>{item.location}</Typography.Body>
                     </View>
                 </View>
@@ -70,7 +72,7 @@ export const ProductDetailsScreen = () => {
 
                 {/* Action Button */}
                 <Button
-                    title="Request Purchase"
+                    title={t('productDetails.requestPurchase')}
                     onPress={() => navigation.navigate('PlaceOrder', { product: item })}
                     style={styles.button}
                 />

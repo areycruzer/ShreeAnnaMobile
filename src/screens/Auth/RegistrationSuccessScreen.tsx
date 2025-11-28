@@ -2,11 +2,13 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import { Typography } from '../../components/Typography';
 import { Button } from '../../components/Button';
 import { ScreenWrapper } from '../../components/ScreenWrapper';
 
 export const RegistrationSuccessScreen = () => {
+    const { t } = useTranslation();
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
     const route = useRoute<any>();
     const { role, mobile } = route.params || {};
@@ -19,27 +21,27 @@ export const RegistrationSuccessScreen = () => {
                 </View>
 
                 <Typography.Title style={styles.title}>
-                    Registration Successful!
+                    {t('registrationSuccess.title')}
                 </Typography.Title>
 
                 <Typography.Body style={styles.description}>
-                    Your account has been created successfully. You can now login with your mobile number {mobile}.
+                    {t('registrationSuccess.description')} {mobile}.
                 </Typography.Body>
 
                 <View style={styles.infoBox}>
                     <Typography.Caption style={styles.infoText}>
-                        📧 A verification link has been sent to your mobile number. Please verify your account to access all features.
+                        📧 {t('registrationSuccess.verificationNote')}
                     </Typography.Caption>
                 </View>
 
                 <Button
-                    title="Go to Login"
+                    title={t('registrationSuccess.goToLogin')}
                     onPress={() => navigation.navigate('Login', { role })}
                     style={styles.button}
                 />
 
                 <Button
-                    title="Back to Home"
+                    title={t('registrationSuccess.backToHome')}
                     onPress={() => navigation.navigate('RoleSelection')}
                     variant="secondary"
                     style={styles.secondaryButton}

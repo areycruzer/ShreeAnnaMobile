@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuthStore } from '../../store/authStore';
+import { useTranslation } from 'react-i18next';
 
 const CategoryChip = ({ label, active, onPress }: { label: string, active?: boolean, onPress: () => void }) => (
     <TouchableOpacity
@@ -21,46 +22,57 @@ const CategoryChip = ({ label, active, onPress }: { label: string, active?: bool
     </TouchableOpacity>
 );
 
-const ProductCard = ({ name, farm, price, quantity, image, onPress }: any) => (
-    <TouchableOpacity
-        style={styles.productCard}
-        onPress={onPress}
-        activeOpacity={0.8}
-    >
-        <View style={styles.productImageContainer}>
-            {image ? (
-                <Image source={image} style={styles.productImage} resizeMode="cover" />
-            ) : (
-                <View style={styles.productImagePlaceholder}>
-                    <Ionicons name="nutrition" size={32} color="#2F8F46" />
-                </View>
-            )}
-        </View>
-        <View style={styles.productInfo}>
-            <Typography.Subtitle style={styles.productName}>{name}</Typography.Subtitle>
-            <Typography.Caption style={styles.farmName}>{farm}</Typography.Caption>
-            <View style={styles.priceRow}>
-                <Typography.Body style={styles.price}>₹{price} <Typography.Caption>/ {quantity}</Typography.Caption></Typography.Body>
+const ProductCard = ({ name, farm, price, quantity, image, onPress }: any) => {
+    const { t } = useTranslation();
+    return (
+        <TouchableOpacity
+            style={styles.productCard}
+            onPress={onPress}
+            activeOpacity={0.8}
+        >
+            <View style={styles.productImageContainer}>
+                {image ? (
+                    <Image source={image} style={styles.productImage} resizeMode="cover" />
+                ) : (
+                    <View style={styles.productImagePlaceholder}>
+                        <Ionicons name="nutrition" size={32} color="#2F8F46" />
+                    </View>
+                )}
             </View>
-            <Button
-                title="View Details"
-                onPress={onPress}
-                style={styles.viewButton}
-                textStyle={{ fontSize: 12 }}
-                variant="secondary"
-            />
-        </View>
-    </TouchableOpacity>
-);
+            <View style={styles.productInfo}>
+                <Typography.Subtitle style={styles.productName}>{name}</Typography.Subtitle>
+                <Typography.Caption style={styles.farmName}>{farm}</Typography.Caption>
+                <View style={styles.priceRow}>
+                    <Typography.Body style={styles.price}>₹{price} <Typography.Caption>/ {quantity}</Typography.Caption></Typography.Body>
+                </View>
+                <Button
+                    title={t('consumer.viewDetails')}
+                    onPress={onPress}
+                    style={styles.viewButton}
+                    textStyle={{ fontSize: 12 }}
+                    variant="secondary"
+                />
+            </View>
+        </TouchableOpacity>
+    );
+};
 
 export const ConsumerDashboard = () => {
+    const { t } = useTranslation();
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
     const user = useAuthStore(state => state.user);
     const [activeCategory, setActiveCategory] = useState('All');
     const [refreshing, setRefreshing] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
 
-    const categories = ['All', 'Millets', 'Flours', 'Snacks', 'Beverages', 'Organic'];
+    const categories = [
+        { id: 'All', label: t('consumer.cat.all') },
+        { id: 'Millets', label: t('consumer.cat.millets') },
+        { id: 'Flours', label: t('consumer.cat.flours') },
+        { id: 'Snacks', label: t('consumer.cat.snacks') },
+        { id: 'Beverages', label: t('consumer.cat.beverages') },
+        { id: 'Organic', label: t('consumer.cat.organic') }
+    ];
 
     const products = [
         {
@@ -115,7 +127,15 @@ export const ConsumerDashboard = () => {
         }
     ];
 
-    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase()) || product.farm.toLowerCase().includes(searchQuery.toLowerCase()));
+    const filteredProducts = products.filter(product => {
+        const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) || product.farm.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesCategory = activeCategory === 'All' ||
+            (activeCategory === 'Millets' && (product.name.includes('Millet') || product.name.includes('Grains'))) ||
+            (activeCategory === 'Flours' && product.name.includes('Flour')) ||
+            (activeCategory === 'Snacks' && (product.name.includes('Cookies') || product.name.includes('Puffs')));
+        // Simple category logic for demo
+        return matchesSearch && matchesCategory;
+    });
 
     const onRefresh = () => {
         setRefreshing(true);
@@ -131,10 +151,10 @@ export const ConsumerDashboard = () => {
             {/* Welcome Section */}
             <View style={styles.welcomeSection}>
                 <View>
-                    <Typography.Caption style={{ color: '#666', marginBottom: 4 }}>Welcome back,</Typography.Caption>
+                    <Typography.Caption style={{ color: '#666', marginBottom: 4 }}>{t('consumer.welcomeBack')}</Typography.Caption>
                     <Typography.Title style={{ fontSize: 24, color: '#1A1A1A' }}>{user?.name || 'Consumer'}</Typography.Title>
                     <Typography.Caption style={{ color: '#2F8F46', marginTop: 4 }}>
-                        <Ionicons name="cart" size={14} color="#2F8F46" /> {user?.role?.toUpperCase() || 'BUYER'}
+                        <Ionicons name="cart" size={14} color="#2F8F46" /> {user?.role?.toUpperCase() || t('role.buyer').toUpperCase()}
                     </Typography.Caption>
                 </View>
                 <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('Profile')}>
@@ -147,16 +167,16 @@ export const ConsumerDashboard = () => {
             </View>
 
             <View style={styles.searchContainer}>
-                <Input placeholder="Search millets or products..." style={styles.searchInput} value={searchQuery} onChangeText={setSearchQuery} autoCapitalize="none" returnKeyType="search" />
+                <Input placeholder={t('consumer.searchPlaceholder')} style={styles.searchInput} value={searchQuery} onChangeText={setSearchQuery} autoCapitalize="none" returnKeyType="search" />
             </View>
 
-            <Typography.Subtitle style={styles.sectionTitle}>Categories</Typography.Subtitle>
+            <Typography.Subtitle style={styles.sectionTitle}>{t('consumer.categories')}</Typography.Subtitle>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoriesRow}>
-                {categories.map((cat, index) => (<CategoryChip key={index} label={cat} active={activeCategory === cat} onPress={() => setActiveCategory(cat)} />))}
+                {categories.map((cat, index) => (<CategoryChip key={index} label={cat.label} active={activeCategory === cat.id} onPress={() => setActiveCategory(cat.id)} />))}
             </ScrollView>
 
-            <Typography.Subtitle style={styles.sectionTitle}>Featured Products</Typography.Subtitle>
-            <Typography.Caption style={styles.sectionSubtitle}>{filteredProducts.length} products available</Typography.Caption>
+            <Typography.Subtitle style={styles.sectionTitle}>{t('consumer.featuredProducts')}</Typography.Subtitle>
+            <Typography.Caption style={styles.sectionSubtitle}>{filteredProducts.length} {t('consumer.productsAvailable')}</Typography.Caption>
 
             <View style={styles.grid}>
                 {filteredProducts.map((product, index) => (<ProductCard key={index} {...product} onPress={() => navigation.navigate('ProductDetails', { product })} />))}
@@ -165,8 +185,8 @@ export const ConsumerDashboard = () => {
             {filteredProducts.length === 0 && (
                 <View style={styles.emptyState}>
                     <Ionicons name="search" size={48} color="#CCC" />
-                    <Typography.Body style={styles.emptyText}>No products found</Typography.Body>
-                    <Typography.Caption style={styles.emptySubtext}>Try adjusting your search</Typography.Caption>
+                    <Typography.Body style={styles.emptyText}>{t('consumer.noProducts')}</Typography.Body>
+                    <Typography.Caption style={styles.emptySubtext}>{t('consumer.adjustSearch')}</Typography.Caption>
                 </View>
             )}
         </ScrollView>
