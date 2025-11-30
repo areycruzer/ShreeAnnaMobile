@@ -237,13 +237,7 @@
         "businessType": "Business Type *",
         "businessTypePlaceholder": "e.g. Retailer, Wholesaler",
         "department": "Department *",
-        "backToHome": "Back to Home"
-    },
-    "gallery": {
-        "title": "Component Gallery",
-        "typography": "Typography",
-        "titleText": "Title Text",
-        "subtitleText": "Subtitle Text",
+        "departmentPlaceholder": "Enter department",
         "bodyText": "Body text is used for general content.",
         "captionText": "Caption text is smaller.",
         "buttons": "Buttons",

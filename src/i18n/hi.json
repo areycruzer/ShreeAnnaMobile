@@ -242,15 +242,30 @@
         "companyNamePlaceholder": "Enter company name",
         "gstin": "GSTIN",
         "gstinPlaceholder": "Enter GSTIN",
-        "businessType": "Business Type *",
-        "businessTypePlaceholder": "e.g. Retailer, Wholesaler",
-        "department": "Department *",
-        "departmentPlaceholder": "Enter department",
-        "designation": "Designation *",
-        "designationPlaceholder": "Enter designation",
-        "employeeId": "Employee ID",
-        "employeeIdPlaceholder": "Enter ID",
-        "fpoPlaceholder": "Enter FPO ID"
+        "businessType": "व्यवसाय का प्रकार *",
+        "businessTypePlaceholder": "जैसे खुदरा विक्रेता, थोक व्यापारी",
+        "department": "विभाग *",
+        "departmentPlaceholder": "विभाग दर्ज करें",
+        "designation": "पद *",
+        "designationPlaceholder": "पद दर्ज करें",
+        "employeeId": "कर्मचारी आईडी",
+        "employeeIdPlaceholder": "आईडी दर्ज करें",
+        "fpoPlaceholder": "FPO ID दर्ज करें",
+        "registerAs": "के रूप में पंजीकरण करें",
+        "step": "चरण",
+        "of": "का",
+        "next": "अगला",
+        "register": "पंजीकरण करें"
+    },
+    "editProfile": {
+        "enterName": "अपना पूरा नाम दर्ज करें",
+        "enterVillage": "गाँव का नाम दर्ज करें",
+        "enterDistrict": "जिला दर्ज करें",
+        "enterState": "राज्य दर्ज करें"
+    },
+    "profile": {
+        "district": "जिला",
+        "state": "राज्य"
     },
     "registrationSuccess": {
         "title": "Registration Successful!",
