@@ -303,5 +303,27 @@
     },
     "units": {
         "kg": "kg"
+    },
+    "adminDashboard": {
+        "portalTitle": "Admin Portal",
+        "portalSubtitle": "Manage Shree Anna Platform",
+        "platformOverview": "Platform Overview",
+        "totalFarmers": "Total Farmers",
+        "farmersSubtitle": "Registered & Verified",
+        "activeFPOs": "Active FPOs",
+        "fposSubtitle": "Operating in 12 districts",
+        "totalVolume": "Total Volume",
+        "volumeSubtitle": "Traded this month",
+        "marketPrice": "Market Price",
+        "priceSubtitle": "Avg. across mandis",
+        "management": "Management",
+        "verifyFarmers": "Verify Farmers",
+        "approveFPOs": "Approve FPOs",
+        "priceUpdates": "Price Updates",
+        "schemeBeneficiaries": "Scheme Beneficiaries",
+        "grievanceRedressal": "Grievance Redressal",
+        "systemAlerts": "System Alerts",
+        "rainAlertTitle": "Heavy Rain Alert",
+        "rainAlertBody": "Heavy rainfall expected in Karnataka region. Advisory sent to farmers."
     }
 }
