@@ -237,18 +237,6 @@
         "businessType": "Business Type *",
         "businessTypePlaceholder": "e.g. Retailer, Wholesaler",
         "department": "Department *",
-        "departmentPlaceholder": "Enter department",
-        "designation": "Designation *",
-        "designationPlaceholder": "Enter designation",
-        "employeeId": "Employee ID",
-        "employeeIdPlaceholder": "Enter ID",
-        "fpoPlaceholder": "Enter FPO ID"
-    },
-    "registrationSuccess": {
-        "title": "Registration Successful!",
-        "description": "Your account has been created successfully. You can now login with your mobile number",
-        "verificationNote": "A verification link has been sent to your mobile number. Please verify your account to access all features.",
-        "goToLogin": "Go to Login",
         "backToHome": "Back to Home"
     },
     "gallery": {
