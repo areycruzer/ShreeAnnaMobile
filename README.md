@@ -1,99 +1,74 @@
-# Shree Anna Mobile App 🌾
+# Shree Anna Mobile
 
-A comprehensive mobile platform for the Millet Value Chain, connecting Farmers, FPOs, SHGs, and Consumers. This app facilitates traceability, market access, and government scheme integration for "Shree Anna" (Millets).
+A React Native (Expo) app for the millet value chain. It is the mobile part of Shree Anna, the project that won Smart India Hackathon 2025. Farmers, farmer producer organizations (FPOs), self-help groups (SHGs), buyers and government admins each get their own dashboard.
 
-Web version: live demo at https://shreeanna-indol.vercel.app
+Web version: https://shreeanna-indol.vercel.app
 
-## 🚀 Features
+Status: hackathon prototype. Data comes from a local mock server ([json-server](https://github.com/typicode/json-server)), not a production backend.
 
-### 1. Role-Based Access Control
-- **Farmer**: Manage batches, view schemes, check weather, and track earnings.
-- **FPO (Farmer Producer Org)**: Aggregate produce, manage farmer members.
-- **SHG (Self Help Group)**: Sell value-added products.
-- **Buyer/Consumer**: Browse and purchase millet products (Marketplace).
-- **Admin (Govt Official)**: Monitor platform stats and manage approvals.
+## What it does
 
-### 2. Dashboards
-- **Farmer Dashboard**: Personalized stats, active batches, and quick access to government schemes.
-- **Consumer Dashboard**: E-commerce style marketplace with categories (Millets, Flours, Snacks) and search.
-- **Admin Dashboard**: High-level overview of total farmers, active FPOs, and volume traded.
+- **Roles.** Separate login and dashboards for Farmer, FPO, SHG, Buyer and Admin. Demo accounts are listed below.
+- **Batches.** A step-by-step form to record a harvest batch, and a list of your batches.
+- **Offline use.** Batches are stored on the device with `expo-sqlite`. Requests made while offline are queued and sent again when the device reconnects (`src/services/SyncService.ts`).
+- **Trace screen.** A timeline of a batch's stages: sowing, harvest, processing and logistics. The QR code on this screen is a static example image; scanning is not built yet.
+- **Languages.** English, Hindi and eight more Indian languages through i18next (`src/i18n/`).
+- **Farmer dashboard extras.** Current weather for the device location from the Open-Meteo API, and a market price ticker with sample prices.
 
-### 3. Traceability (Seed to Feed)
-- **Batch Tracking**: Track the journey of millet batches from sowing to harvest to processing.
-- **QR Code Integration**: Scan to view the full history of a product.
-- **Timeline View**: Visual representation of each stage (Sowing, Harvest, Processing, Logistics).
+## Stack
 
-### 4. Key Functionalities
-- **Multilingual Support**: Full English and Hindi (Devanagari) support.
-- **Offline Capable**: Save batch data as drafts when offline.
-- **Secure Authentication**: Role-based login with demo credentials.
-- **Marketplace**: Product listing with images, prices, and farmer details.
+- React Native 0.81 with Expo SDK 54, TypeScript in strict mode
+- Zustand for state, React Navigation (native stack) for navigation
+- expo-sqlite, AsyncStorage and NetInfo for offline storage and sync
+- json-server as the mock backend
 
-## 📱 Screens
+## Run it
 
-- **Login/Role Selection**: Choose your role to enter the app.
-- **Home**: Dynamic dashboard based on user role.
-- **My Batches**: List of active and historical batches.
-- **Add Batch**: Wizard-style form for recording new harvest.
-- **Traceability**: Detailed view of batch journey.
-- **Profile**: Manage personal details and settings.
-- **Orders**: Track purchase orders (for Buyers).
+```bash
+npm install
+npm run mock-server   # mock API on port 4000
+npm start             # then press a (Android), i (iOS) or scan the QR code with Expo Go
+```
 
-## 🛠 Tech Stack
+## Checks
 
-- **Framework**: React Native (Expo)
-- **Language**: TypeScript
-- **Styling**: Custom Design System (Typography, Spacing, Colors)
-- **State Management**: Zustand
-- **Navigation**: React Navigation (Native Stack)
-- **Icons**: Ionicons & MaterialIcons
-- **Mock Backend**: JSON Server
+```bash
+npm run typecheck   # tsc --noEmit
+npm test            # unit tests for the form validators in src/utils/validation.ts
+```
 
-## 🏃‍♂️ Quick Start
+CI runs both on every push to `master`.
 
-1.  **Install Dependencies**
-    ```bash
-    npm install
-    ```
+## Demo accounts
 
-2.  **Start Mock Server**
-    ```bash
-    npm run mock-server
-    ```
-    *Runs on port 4000*
-
-3.  **Run App**
-    ```bash
-    npm start
-    ```
-    *Press `a` for Android, `i` for iOS, or scan QR code with Expo Go.*
-
-## 🧪 Demo Credentials
+These accounts exist only in the mock server data.
 
 | Role | Phone | Password |
 |------|-------|----------|
-| **Farmer** | `1234567890` | `demo1234` |
-| **FPO** | `1234567891` | `demo1234` |
-| **SHG** | `1234567892` | `demo1234` |
-| **Buyer** | `1234567893` | `demo1234` |
-| **Admin** | `1234567894` | `demo1234` |
+| Farmer | `1234567890` | `demo1234` |
+| FPO | `1234567891` | `demo1234` |
+| SHG | `1234567892` | `demo1234` |
+| Buyer | `1234567893` | `demo1234` |
+| Admin | `1234567894` | `demo1234` |
 
-*Tip: Use the "Demo User" button on the login screen to auto-fill credentials based on selected role.*
+The "Demo User" button on the login screen fills these in for the selected role.
 
-## 📂 Project Structure
+## Project layout
 
 ```
-/src
-  /components   # Reusable UI components (Button, Card, Typography)
-  /screens      # App screens (Auth, Home, Batches, Orders)
-  /navigation   # Navigation setup (AppNavigator)
-  /store        # Zustand stores (Auth, Batches)
-  /theme        # Design tokens (Colors, Spacing)
-  /utils        # Helper functions
-  /assets       # Images and static files
-/mock-server    # JSON Server data and config
+src/
+  components/   reusable UI (Button, Card, Typography, WeatherWidget)
+  screens/      Auth, Home, Batches, Trace, Orders, Notifications
+  navigation/   AppNavigator
+  services/     API client, SQLite storage, offline sync
+  store/        Zustand stores
+  i18n/         translation files
+  theme/        colors, spacing, typography
+  utils/        validation and helpers
+mock-server/    json-server data
+tests/          unit tests (node:test)
 ```
 
-## 📄 License
+## License
 
-MIT License
+MIT, see [LICENSE](LICENSE).

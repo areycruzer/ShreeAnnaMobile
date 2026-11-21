@@ -56,7 +56,7 @@ export const MyBatchesScreen = () => {
         if (item.status === 'Draft') statusType = 'warning';
         if (item.status === 'QC Pending') statusType = 'info';
 
-        const statusLabel = item.status ? t(`status.${item.status.toLowerCase().replace(' ', '')}`, item.status) : t('status.draft');
+        const statusLabel = item.status ? t(`status.${item.status.toLowerCase().replace(' ', '')}`, { defaultValue: item.status }) : t('status.draft');
 
         return (
             <Card
