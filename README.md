@@ -2,6 +2,8 @@
 
 A comprehensive mobile platform for the Millet Value Chain, connecting Farmers, FPOs, SHGs, and Consumers. This app facilitates traceability, market access, and government scheme integration for "Shree Anna" (Millets).
 
+Web version: live demo at https://shreeanna-indol.vercel.app
+
 ## 🚀 Features
 
 ### 1. Role-Based Access Control
